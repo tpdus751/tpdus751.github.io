@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>W3.CSS Template</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="table.css">
+  <style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Raleway", sans-serif
+    }
+  </style>
+</head>
+
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+  <!-- Sidebar/menu -->
+  <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+    <div class="w3-container">
+      <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey"
+        title="close menu">
+        <i class="fa fa-remove"></i>
+      </a>
+      <div style="text-align: center;">
+        <img src="박세연로봇.png" style="width:100%;" class="w3-round"><br><br>
+      </div>
+      <h4><b>한국폴리텍대학교 성남캠퍼스 인공지능소프트웨어학과</b></h4>
+      <p class="w3-text-grey">박세연 2403110273</p>
+    </div>
+    <div class="w3-bar-block">
+      <a href="#portfolio" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i
+          class="fa fa-th-large fa-fw w3-margin-right"></i>포트폴리오</a>
+      <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i
+          class="fa fa-user fa-fw w3-margin-right"></i>자기 소개</a>
+      <a href="#timetable" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i
+          class="fa fa-user fa-fw w3-margin-right"></i>시간표</a>
+      <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i
+          class="fa fa-user fa-fw w3-margin-right"></i>팀</a>
+      <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i
+          class="fa fa-envelope fa-fw w3-margin-right"></i>연락</a>
+    </div>
+    <div id="insta_github">
+      <div class="w3-panel w3-large">
+        <a href="https://www.instagram.com/s._.eyony/" target="_blank"><i class="fa fa-instagram w3-hover-opacity"></i></a>
+        <a href="https://github.com/tpdus751" target="_blank"><i class="fa fa-github w3-hover-opacity"></i></a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
+    title="close side menu" id="myOverlay"></div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:300px">
+
+    <!-- Header -->
+    <header id="portfolio">
+      <a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;"
+          class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+      <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i
+          class="fa fa-bars"></i></span>
+      <div class="w3-container">
+        <h1>
+          <center><b>박세연의 홈페이지</b></center>
+        </h1>
+      </div>
+    </header>
+    <br>
+    <br>
+    <!-- First Photo Grid-->
+    <div class="w3-row-padding">
+      <div class="w3-third w3-container w3-margin-bottom">
+        <a href="project.html">
+          <img src="맛있조합.png" alt="Norway" style="width:100%" class="w3-hover-opacity">
+        </a>
+        <div class="w3-container w3-white">
+          <p><b>발명과 창업 프로젝트 </b></p>
+          <p>식재료 입력 기반 최적화 레시피 추천 및 레시피 공유 커뮤니티</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Photo Grid-->
+    <div class="w3-row-padding">
+      <div class="w3-third w3-container w3-margin-bottom">
+        <a href="https://www.acmicpc.net/user/tpdus751">
+          <img src="백준.png" alt="Norway" style="width:100%" class="w3-hover-opacity">
+        </a>
+        <div class="w3-container w3-white">
+          <p><b>백준</b></p>
+          <p>백준 문제 풀이 현황</p>
+        </div>
+      </div>
+      <div class="w3-third w3-container">
+        <a href="https://github.com/tpdus751">
+          <img src="깃허브.png" alt="Norway" style="width:100%" class="w3-hover-opacity">
+        </a>
+        <div class="w3-container w3-white">
+          <p><b>깃허브</b></p>
+          <p>각종 과제 및 과정 백업</p>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Pagination -->
+    <div class="w3-center w3-padding-32">
+      <div class="w3-bar">
+        <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
+        <a href="#" class="w3-bar-item w3-black w3-button">1</a>
+        <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
+        <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
+        <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
+        <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
+      </div>
+    </div>
+
+    <hr>
+    <br>
+    <br>
+
+    <!-- Images of Me -->
+    <div class="w3-row-padding w3-padding-16" id="about">
+      <div style="text-align: center;">
+        <img src="박세연로봇.png" alt="Me" style="width:30%" height="30%">
+      </div>
+
+      <div class="w3-container w3-padding-large" style="margin-bottom:32px">
+        <br>
+        <br>
+        <h4><b>자기소개</b></h4>
+        <p>안녕하세요. 한국 폴리텍대학교 성남캠퍼스에 재학중인 인공지능소프트웨어학과 1학년 박세연이라고 합니다.<br>
+        </p>
+        <br>
+        <br>
+        <h4>학습 흥미</h4>
+        <!-- Progress bars / Skills -->
+        <p>자바</p>
+        <div class="w3-grey">
+          <div class="w3-container w3-dark-grey w3-padding w3-center" style="width:95%">95%</div>
+        </div>
+        <p>HTML, CSS, JS</p>
+        <div class="w3-grey">
+          <div class="w3-container w3-dark-grey w3-padding w3-center" style="width:75%">75%</div>
+        </div>
+        <p>AI</p>
+        <div class="w3-grey">
+          <div class="w3-container w3-dark-grey w3-padding w3-center" style="width:80%">80%</div>
+        </div>
+        <p>
+        <p>데이터베이스</p>
+        <div class="w3-grey">
+          <div class="w3-container w3-dark-grey w3-padding w3-center" style="width:80%">80%</div>
+        </div>
+        <br>
+        <br>
+
+        <hr>
+        <br>
+        <br>
+
+
+        <div class="w3-row-padding w3-padding-16" id="timetable">
+          <h2>지금 SW를 공부하고 있어요.</h2>
+
+          <tr>
+            <td colspan="3">이번 학기에 배우는 과목</td>
+          </tr>
+          <table border="1">
+            <tr>
+              <td><b>과목</b></td>
+              <td><b>시간</b></td>
+              <td><b>교수님</b></td>
+            </tr>
+            <tr>
+              <td>인터페이스 디자인 실습</td>
+              <td>
+                <li>화 오전 10:30 ~ 11:45</li>
+                <li>금 오전 09:00 ~ 10:15</li>
+              </td>
+              <td>이혜정 교수님</td>
+            </tr>
+            <tr>
+              <td>JAVA 기초</td>
+              <td>
+                <li>화 오전 09:00 ~ 10:15</li>
+                <li>수 오전 10:30 ~ 11:45</li>
+              </td>
+              <td>이혜정 교수님</td>
+            </tr>
+            <tr>
+              <td>알고리즘</td>
+              <td>
+                <li>수 오전 09:00 ~ 10:15</li>
+                <li>금 오전 10:30 ~ 11:45</li>
+              </td>
+              <td>이혜정 교수님</td>
+            </tr>
+            <tr>
+              <td>기초통계</td>
+              <td>
+                <li>월 오전 09:00 ~ 11:45</li>
+              </td>
+              <td>이효재 교수님</td>
+            </tr>
+            <tr>
+              <td>융합 프로젝트</td>
+              <td>
+                <li>월 오후 13:00 ~ 14:40</li>
+                <li>금 오후 13:00 ~ 15:40</li>
+              </td>
+              <td>이효재 교수님</td>
+            </tr>
+            <tr>
+              <td>발명과 창업</td>
+              <td>
+                <li>수 오후 13:00 ~ 14:40</li>
+              </td>
+              <td>이효재 교수님</td>
+            </tr>
+            <tr>
+              <td>데이터 베이스</td>
+              <td>
+                <li>화 오후 13:00 ~ 15:40</li>
+              </td>
+              <td>팽성권 교수님</td>
+            </tr>
+            <tr>
+              <td>컴퓨터 구조</td>
+              <td>
+                <li>목 오전 09:00 ~ 11:50</li>
+              </td>
+              <td>김형오 교수님</td>
+            </tr>
+            <tr>
+              <td>산업 안전 관리</td>
+              <td>
+                <li>목 오후 13:00 ~ 14:40</li>
+              </td>
+              <td>이현순 교수님</td>
+            </tr>
+            <tr>
+              <td>영어</td>
+              <td>
+                <li>수 오후 14:50 ~ 16:40</li>
+              </td>
+              <td>영어 강사님</td>
+            </tr>
+          </table>
+        </div>
+        <br>
+        <br>
+
+        <hr>
+        <br>
+        <br>
+
+
+        <div class="w3-row-padding w3-padding-16" id="team">
+          <table border="1">
+            <th colspan="2">
+              <center>한이음 6조</center>
+            </th>
+            <tr>
+              <td>주제</td>
+              <td>식재료 입력 기반 최적화 레시피 추천 및 레시피 공유 커뮤니티</td>
+            </tr>
+            <tr>
+              <td>
+                팀장
+              </td>
+              <td>
+                <li><a href="https://github.com/tpdus751">박세연</a><br></li>
+              </td>
+            </tr>
+            <tr>
+              <td rowspan="4">
+                팀원
+              </td>
+              <td>
+                <li><a href="https://github.com/Je0ngaram/rami">전가람</a><br></li>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <li><a href="https://github.com/sso05098">김범준</a><br></li>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <li><a href="https://github.com/ljsuuuuuuuu">이지수</a><br></li>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <li><a href="https://github.com/florencesy02">서영</a><br></li>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <br>
+        <br>
+
+        <!-- Contact Section -->
+        <div class="w3-container w3-padding-large w3-grey">
+          <h4 id="contact"><b>연락 보내기</b></h4>
+          <div class="w3-row-padding w3-center w3-padding-24" style="margin:0 -16px">
+            <div class="w3-third w3-dark-grey">
+              <p><i class="fa fa-envelope w3-xxlarge w3-text-light-grey"></i></p>
+              <p>751psy@naver.com</p>
+            </div>
+            <div class="w3-third w3-teal">
+              <p><i class="fa fa-map-marker w3-xxlarge w3-text-light-grey"></i></p>
+              <p>Republic of Korea, Seongnam</p>
+            </div>
+            <div class="w3-third w3-dark-grey">
+              <p><i class="fa fa-phone w3-xxlarge w3-text-light-grey"></i></p>
+              <p>010-3607-9681</p>
+            </div>
+          </div>
+          <form action="/action_page.php" target="_blank">
+            <div class="w3-section">
+              <label>Name</label>
+              <input class="w3-input w3-border" type="text" name="Name" required>
+            </div>
+            <div class="w3-section">
+              <label>Email</label>
+              <input class="w3-input w3-border" type="text" name="Email" required>
+            </div>
+            <div class="w3-section">
+              <label>Message</label>
+              <input class="w3-input w3-border" type="text" name="Message" required>
+            </div>
+            <button type="submit" class="w3-button w3-black w3-margin-bottom"><i
+                class="fa fa-paper-plane w3-margin-right"></i>메세지 전송 - 구현 예정</button>
+          </form>
+        </div>
+
+        <!-- Footer -->
+        <footer class="w3-container w3-padding-32 w3-dark-grey">
+          <div class="w3-row-padding">
+            <div class="w3-third" style="text-align: center;">
+              <h3>박세연</h3>
+              <p>
+                테어난 곳 : 충청북도 청주시 <br>
+                나이 : 26 (1999) <br>
+                키 : 180cm <br>
+                몸무게 : 66kg <br>
+              </p>
+
+            </div>
+
+            <div class="w3-third">
+              <a href="https://cafe.naver.com/snpaisw" target="_blank">
+                <img src="네이버카페.png" alt="Norway" style="width:100%" style="height:100%" class="w3-hover-opacity">
+              </a>
+            </div>
+
+            <div class="w3-third">
+              <a href="https://www.youtube.com/@aisw-snp" target="_blank">
+                <img src="유튜브바로가기.png" alt="Norway" style="width:100%" style="height:100%" height:100%
+                  class="w3-hover-opacity">
+              </a>
+            </div>
+
+          </div>
+        </footer>
+
+        <div class="w3-black w3-center w3-padding-24">
+          <div id="insta_github">
+            <div class="w3-panel w3-large">
+              <a href="https://www.instagram.com/s._.eyony/" target="_blank"><i class="fa fa-instagram w3-hover-opacity"></i></a>
+              <a href="https://github.com/tpdus751" target="_blank"><i class="fa fa-github w3-hover-opacity"></i></a>
+            </div>
+          </div>
+
+          <!-- End page content -->
+        </div>
+
+        <script>
+          // Script to open and close sidebar
+          function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("myOverlay").style.display = "block";
+          }
+
+          function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("myOverlay").style.display = "none";
+          }
+        </script>
+
+</body>
+
+</html>

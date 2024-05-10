@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>W3.CSS Template</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="table.css">
+  <style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Raleway", sans-serif
+    }
+  </style>
+</head>
+
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+  <!-- Sidebar/menu -->
+  <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+    <div class="w3-container">
+      <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey"
+        title="close menu">
+        <i class="fa fa-remove"></i>
+      </a>
+      <div style="text-align: center;">
+        <img src="박세연로봇.png" style="width:100%;" class="w3-round"><br><br>
+      </div>
+      <h4><b>한국폴리텍대학교 성남캠퍼스 인공지능소프트웨어학과</b></h4>
+      <p class="w3-text-grey">박세연 2403110273</p>
+    </div>
+    <div class="w3-bar-block">
+      <a href="#portfolio" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i
+          class="fa fa-th-large fa-fw w3-margin-right"></i>포트폴리오</a>
+      <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i
+          class="fa fa-user fa-fw w3-margin-right"></i>자기 소개</a>
+      <a href="#timetable" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i
+          class="fa fa-user fa-fw w3-margin-right"></i>시간표</a>
+      <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i
+          class="fa fa-user fa-fw w3-margin-right"></i>팀</a>
+      <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i
+          class="fa fa-envelope fa-fw w3-margin-right"></i>연락</a>
+    </div>
+    <div id="insta_github">
+      <div class="w3-panel w3-large">
+        <a href="https://www.instagram.com/s._.eyony/" target="_blank"><i class="fa fa-instagram w3-hover-opacity"></i></a>
+        <a href="https://github.com/tpdus751" target="_blank"><i class="fa fa-github w3-hover-opacity"></i></a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
+    title="close side menu" id="myOverlay"></div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:300px">
+
+  <h1><center>구현 예정</center></h1>
+
+        <!-- Footer -->
+        <footer class="w3-container w3-padding-32 w3-dark-grey">
+          <div class="w3-row-padding">
+            <div class="w3-third" style="text-align: center;">
+              <h3>박세연</h3>
+              <p>
+                테어난 곳 : 충청북도 청주시 <br>
+                나이 : 26 (1999) <br>
+                키 : 180cm <br>
+                몸무게 : 66kg <br>
+              </p>
+            </div>
+          
+
+            <div class="w3-third">
+              <a href="https://cafe.naver.com/snpaisw" target="_blank">
+                <img src="네이버카페.png" alt="Norway" style="width:100%" style="height:100%" class="w3-hover-opacity">
+              </a>
+            </div>
+
+            <div class="w3-third">
+              <a href="https://www.youtube.com/@aisw-snp" target="_blank">
+                <img src="유튜브바로가기.png" alt="Norway" style="width:100%" style="height:100%" height:100%
+                  class="w3-hover-opacity">
+              </a>
+            </div>
+
+          </div>
+        </footer>
+
+        <div class="w3-black w3-center w3-padding-24">
+          <div id="insta_github">
+            <div class="w3-panel w3-large">
+              <a href="https://www.instagram.com/s._.eyony/" target="_blank"><i class="fa fa-instagram w3-hover-opacity"></i></a>
+              <a href="https://github.com/tpdus751" target="_blank"><i class="fa fa-github w3-hover-opacity"></i></a>
+            </div>
+          </div>
+
+          <!-- End page content -->
+        </div>
+
+        <script>
+          // Script to open and close sidebar
+          function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("myOverlay").style.display = "block";
+          }
+
+          function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("myOverlay").style.display = "none";
+          }
+        </script>
+
+</body>
+
+</html>
