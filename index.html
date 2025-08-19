@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>박세연 | Backend Developer</title>
+    <meta name="description" content="백엔드 개발자 박세연 포트폴리오 — Spring Boot, JPA, MySQL, REST API, 테스트/문서화, 운영/성능 최적화" />
+    <meta property="og:title" content="박세연 | Backend Developer" />
+    <meta property="og:description" content="Spring Boot · JPA · MySQL · REST API · 테스트/문서화 · 운영/성능" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tpdus751.github.io" />
+    <meta property="og:image" content="assets/og-cover.png" />
+    <link rel="icon" href="assets/favicon.png" />
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "Pretendard", "Noto Sans KR", "system-ui", "sans-serif"],
+            },
+            colors: {
+              primary: {
+                DEFAULT: "#14b8a6",
+                50: "#f0fdfa",
+                100: "#ccfbf1",
+                500: "#14b8a6",
+                600: "#0d9488",
+              },
+              surface: "#0b1220",
+            },
+            boxShadow: {
+              soft: "0 10px 30px rgba(2,8,23,.15)",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <style>
+      .gradient-bg {
+        background: radial-gradient(1200px 600px at 10% -10%, rgba(20, 184, 166, 0.15), transparent),
+          radial-gradient(800px 400px at 90% -20%, rgba(59, 130, 246, 0.12), transparent),
+          linear-gradient(180deg, #0b1220 0%, #0b1220 100%);
+      }
+      .glass { backdrop-filter: blur(12px); background: rgba(255,255,255,0.06); }
+      .tag { transition: transform .12s ease; }
+      .tag:hover { transform: translateY(-2px); } 
+    </style>
+  </head>
+
+  <body class="gradient-bg text-slate-200">
+    <!-- ====== NAVBAR ====== -->
+    <header class="sticky top-0 z-50 backdrop-blur-md/50 border-b border-white/10 bg-black/30">
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="flex h-16 items-center justify-between">
+          <a href="#top" class="font-bold tracking-tight text-xl">박세연<span class="text-primary">.</span>com</a>
+          <nav class="hidden md:flex items-center gap-6 text-sm">
+            <a href="#about" class="hover:text-primary-100">대학 성과</a>
+            <a href="#skills" class="hover:text-primary-100">기술 스택</a>
+            <a href="#projects" class="hover:text-primary-100">프로젝트</a>
+          </nav>
+          <div class="flex items-center gap-3">
+            <a href="assets/박세연_이력서.pdf" class="hidden sm:inline-flex items-center gap-2 rounded-xl bg-primary px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-primary-600 transition" download>
+              <i class="fa-solid fa-file-arrow-down"></i>
+              이력서
+            </a>
+            <button id="themeToggle" title="다크/라이트 전환" class="inline-flex items-center justify-center w-10 h-10 rounded-xl glass border border-white/10 hover:border-primary-500">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <button class="md:hidden inline-flex items-center justify-center w-10 h-10" id="menuBtn" aria-label="open menu">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="mobileMenu" class="md:hidden hidden border-t border-white/10 bg-black/60">
+        <div class="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-2 text-sm">
+          <a href="#about" class="py-2">대학 성과</a>
+          <a href="#skills" class="py-2">기술 스택</a>
+          <a href="#projects" class="py-2">프로젝트</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ====== HERO ====== -->
+    <section id="top" class="relative">
+      <div class="mx-auto max-w-6xl px-4 pt-16 md:pt-24 pb-10">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h1 class="text-5xl md:text-4xl font-extrabold leading-tight tracking-tight">
+              T자형을 넘은<br>바코드형 <img src="assets/barcode.png" alt="barcode" class="inline-block w-20 md:w-20 mb-2" /><br>
+              <span class="text-primary">백엔드 개발자</span> 박세연
+            </h1><br>
+            <p class="mt-4 text-slate-300 leading-relaxed">
+              새로운 기술에 대한 갈증이 있지만<br> 
+              무엇보다 기술 구조에 있어 효율적인 기술인지 끊임없이 고민하고<br>
+              노력하는 자세로 넓은 시야를 가지며 실전에 책임을 다하겠습니다.
+              
+            </p>
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <a href="https://github.com/tpdus751" target="_blank" class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2 hover:border-primary-600 hover:bg-white/10 transition">
+                <i class="fa-brands fa-github"></i> GitHub
+              </a>
+              <a href="#projects" class="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 font-semibold text-slate-900 hover:bg-primary-600 transition">
+                주요 프로젝트 보기
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="relative">
+            <img src="assets/profile.png" alt="profile" class="w-64 h-64 md:w-80 md:h-80 rounded-3xl object-cover mx-auto shadow-soft border border-white/10 glass" />
+            <div class="absolute -bottom-4 right-8 hidden md:block">
+              <div class="rounded-2xl bg-primary text-slate-900 px-4 py-3 text-sm font-semibold shadow-soft">
+                <i class="fa-solid fa-terminal mr-2"></i> Java · Spring · JPA
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== ABOUT ====== -->
+<section id="about" class="py-16">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="md:col-span-2">
+        <h2 class="text-xl font-bold mb-4">대학 성과</h2>
+        <div class="glass rounded-2xl p-6 border border-white/10">
+
+          <!-- 핵심 지표 -->
+          <div class="grid sm:grid-cols-4 gap-3 mb-6">
+            <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3">
+              <span class="w-9 h-9 rounded-lg bg-primary/20 text-primary-100 grid place-items-center">
+                <i class="fa-solid fa-star"></i>
+              </span>
+              <div>
+                <div class="text-xs text-slate-400">평균평점</div>
+                <div class="text-xl font-bold">4.09</div>
+              </div>
+            </div>
+            <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3">
+              <span class="w-9 h-9 rounded-lg bg-primary/20 text-primary-100 grid place-items-center">
+                <i class="fa-solid fa-flag-checkered"></i>
+              </span>
+              <div>
+                <div class="text-xs text-slate-400">최근 학기(2-1)</div>
+                <div class="text-xl font-bold">4.38</div>
+              </div>
+            </div>
+            <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3">
+              <span class="w-9 h-9 rounded-lg bg-primary/20 text-primary-100 grid place-items-center">
+                <i class="fa-solid fa-certificate"></i>
+              </span>
+              <div>
+                <div class="text-xs text-slate-400">자격증 취득</div>
+                <div class="text-xl font-bold">3개</div>
+              </div>
+            </div>
+            <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3">
+              <span class="w-9 h-9 rounded-lg bg-primary/20 text-primary-100 grid place-items-center">
+                <i class="fa-solid fa-trophy"></i>
+              </span>
+              <div>
+                <div class="text-xs text-slate-400">수상</div>
+                <div class="text-xl font-bold">2회</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 연차별 학습 -->
+          <div class="grid sm:grid-cols-2 gap-4 mb-6">
+            <div class="rounded-xl border border-white/10 bg-white/5 p-4">
+              <div class="text-sm font-semibold mb-2">1학년 - R · CS · Java · WEB · RDB · SQL</div>
+              <ul class="text-sm space-y-1.5 text-slate-300">
+                <li class="flex gap-2"><i class="fa-solid fa-check mt-1 text-primary-100"></i>R 기반 데이터 분석</li>
+                <li class="flex gap-2"><i class="fa-solid fa-check mt-1 text-primary-100"></i>자료구조 · 알고리즘</li>
+                <li class="flex gap-2"><i class="fa-solid fa-check mt-1 text-primary-100"></i>Java 이해, 클라이언트 · 서버 웹 프로그래밍(JSP, Servlet, MVC)</li>
+                <li class="flex gap-2"><i class="fa-solid fa-check mt-1 text-primary-100"></i>OracleDB, SQL 기초 및 심화</li>
+                <li class="flex gap-2"><i class="fa-solid fa-check mt-1 text-primary-100"></i>네트워크 / Linux / C</li>
+              </ul>
+            </div>
+            <div class="rounded-xl border border-white/10 bg-white/5 p-4">
+              <div class="text-sm font-semibold mb-2">2학년 - Spring, Python · DataScience · AI</div>
+              <ul class="text-sm space-y-1.5 text-slate-300">
+                <li class="flex gap-2"><i class="fa-solid fa-check mt-1 text-primary-100"></i>Spring Framework 이해, Restful API</li>
+                <li class="flex gap-2"><i class="fa-solid fa-check mt-1 text-primary-100"></i>Python 활용 데이터 수집·분석</li>
+                <li class="flex gap-2"><i class="fa-solid fa-check mt-1 text-primary-100"></i>머신러닝/딥러닝, LLM, OpenCV 등</li>
+                <li class="flex gap-2"><i class="fa-solid fa-check mt-1 text-primary-100"></i>개별 학습 및 적용(React/SpringBoot/Flask)</li>
+                <li class="flex gap-2"><i class="fa-solid fa-check mt-1 text-primary-100"></i>AI 적용 프로젝트 구현</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 개별 학습 (독학/외부) -->
+          <div class="rounded-xl border border-white/10 bg-white/5 p-4 mb-4">
+            <div class="text-sm font-semibold mb-2">개별 학습</div>
+            <div class="flex flex-wrap gap-2 text-xs">
+              <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" width="14" height="14">React
+              </span>
+              <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React Native" width="14" height="14">React Native
+              </span>
+              <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                <img src="https://cdn.simpleicons.org/expo/ffffff" alt="Expo" width="14" height="14">Expo
+              </span>
+              <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" alt="AWS" width="18" height="18">AWS RDS, S3
+              </span>
+              <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" width="14" height="14">MySQL
+              </span>
+              <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" width="14" height="14">Flask
+              </span>
+              <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                <i class="fa-solid fa-code"></i>Swagger UI
+              </span>
+              <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                <i class="fa-solid fa-cubes"></i>블록체인
+              </span>
+            </div>
+          </div>
+
+          <!-- 학습 중 · 관심 -->
+          <div class="rounded-xl border border-white/10 bg-white/5 p-4">
+            <div class="text-sm font-semibold mb-2">학습 중 · 관심</div>
+            <div class="flex flex-wrap gap-2 text-xs">
+              <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                <i class="fa-solid fa-shield-halved"></i>보안
+              </span>
+              <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" width="14" height="14">C++
+              </span>
+              <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" alt="AWS" width="18" height="18">AWS SAA
+              </span>
+              <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                <img src="https://cdn.simpleicons.org/apachekafka/ffffff" alt="Kafka" width="14" height="14">Kafka
+              </span>
+              <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                <img src="https://cdn.simpleicons.org/redis/ffffff" alt="Redis" width="14" height="14">Redis
+              </span>
+              <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                <img src="https://cdn.simpleicons.org/kubernetes/ffffff" alt="Kubernetes" width="14" height="14">Kubernetes
+              </span>
+              <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-plain.svg" alt="Docker" width="14" height="14">Docker
+              </span>
+            </div>
+          </div>
+          <br>
+
+          <!-- 자격/수상 상세 -->
+          <div class="mb-5">
+            <div class="text-sm font-semibold mb-2">자격/수상</div>
+            <div class="flex flex-wrap gap-2 text-xs">
+              <!-- Certificates -->
+              <span class="inline-flex items-center px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                정보처리산업기사 (2025)
+              </span>
+              <span class="inline-flex items-center px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                SQLD (2024)
+              </span>
+              <span class="inline-flex items-center px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                ADsP (2024)
+              </span>
+              <!-- Awards -->
+              <span class="inline-flex items-center px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                아이디어 경진대회 동상
+              </span>
+              <span class="inline-flex items-center px-2 py-1 rounded-full border border-white/10 bg-white/5">
+                벤처창업 아이템 경진대회 장려상
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 오른쪽 요약 카드는 그대로 두어도 됩니다 -->
+      <div>
+        <h2 class="text-xl font-bold mb-4">정보</h2>
+        <div class="glass rounded-2xl p-6 border border-white/10">
+          <dl class="space-y-3 text-sm">
+            <div class="flex justify-between"><dt class="text-slate-400">대학</dt><dd>한국폴리텍대학 성남캠퍼스</dd></div>
+            <div class="flex justify-between"><dt class="text-slate-400">전공</dt><dd>인공지능소프트웨어과</dd></div>
+            <div class="flex justify-between"><dt class="text-slate-400">이메일</dt><dd><a class="underline decoration-primary/50" href="mailto:751psy@gmail.com">751psy@gmail.com</a></dd></div>
+            <div class="flex justify-between"><dt class="text-slate-400">GitHub</dt><dd><a class="underline decoration-primary/50" href="https://github.com/tpdus751" target="_blank">tpdus751</a></dd></div>
+            <div class="pt-2 border-t border-white/10"></div>
+            <div class="flex justify-between"><dt class="text-slate-400">자격</dt><dd>정보처리산업기사(’25), SQLD/ADsP(’24)</dd></div>
+            <div class="flex justify-between"><dt class="text-slate-400">수상</dt><dd>아이디어 경진대회 동상 · 벤처창업 장려상</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- ====== SKILLS ====== -->
+<section id="skills" class="py-16">
+  <style>
+    /* compact chips */
+    .skill-chip{
+      display:inline-flex;align-items:center;gap:.45rem;
+      padding:.32rem .55rem;border-radius:10px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.045);
+      line-height:1;font-size:.85rem
+    }
+    .skill-chip .icon{width:18px;height:18px;display:grid;place-items:center}
+    .skill-chip img{width:18px;height:18px;object-fit:contain}
+    .skill-group{display:flex;flex-wrap:wrap;gap:.5rem}
+  </style>
+
+  <div class="mx-auto max-w-6xl px-4">
+    <h2 class="text-xl font-bold mb-6">기술 스택</h2>
+
+    <!-- Languages -->
+    <div class="glass rounded-2xl p-6 border border-white/10 mb-6">
+      <h3 class="font-semibold mb-3 text-lg">Languages</h3>
+      <div class="skill-group">
+        <span class="skill-chip"><span class="icon"><img alt="Java" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"></span>Java</span>
+        <span class="skill-chip"><span class="icon"><img alt="Python" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"></span>Python</span>
+        <span class="skill-chip"><span class="icon"><img alt="JavaScript" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"></span>JavaScript</span>
+        <span class="skill-chip"><span class="icon"><img alt="C" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg"></span>C</span>
+        <span class="skill-chip"><span class="icon"><img alt="R" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg"></span>R</span>
+      </div>
+    </div>
+
+    <!-- Familiar -->
+    <div class="glass rounded-2xl p-6 border border-white/10 mb-6">
+      <h3 class="font-semibold mb-4 text-lg">Familiar</h3>
+
+      <!-- Backend -->
+      <h4 class="text-sm font-semibold text-slate-400 mb-2">Backend</h4>
+      <div class="skill-group mb-4">
+        <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"></span>Spring</span>
+        <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"></span>Spring Boot</span>
+        <span class="skill-chip"><span class="icon"><i class="fa-solid fa-database"></i></span>JPA</span>
+        <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"></span>JSP / Servlet</span>
+        <span class="skill-chip"><span class="icon"><i class="fa-solid fa-diagram-project"></i></span>RESTful API</span>
+        <span class="skill-chip"><span class="icon"><i class="fa-solid fa-vial"></i></span>JUnit</span>
+        <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"></span>MyBatis</span>
+      </div>
+
+      <!-- Frontend / App -->
+      <h4 class="text-sm font-semibold text-slate-400 mb-2">Frontend / App</h4>
+      <div class="skill-group mb-4">
+        <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg"></span>HTML</span>
+        <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain.svg"></span>CSS</span>
+        <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"></span>React</span>
+        <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-plain.svg"></span>jQuery</span>
+      </div>
+
+      <!-- Data / AI & Crawling -->
+      <h4 class="text-sm font-semibold text-slate-400 mb-2">Data / AI & Crawling</h4>
+      <div class="skill-group mb-4">
+        <span class="skill-chip"><span class="icon"><i class="fa-solid fa-brain"></i></span>Machine Learning</span>
+        <span class="skill-chip"><span class="icon"><i class="fa-solid fa-brain"></i></span>Deep Learning</span>
+
+        <!-- NEW: LLM (GPT API) -->
+        <span class="skill-chip">
+          <span class="icon">
+            <!-- 우선 OpenAI 아이콘, 깨지면 로봇 아이콘이 보이도록 -->
+            <picture>
+              <source srcset="https://cdn.simpleicons.org/openai/ffffff" type="image/svg+xml" />
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E" alt="OpenAI" />
+            </picture>
+          </span>
+          LLM (GPT API)
+        </span>
+
+  <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg"></span>OpenCV</span>
+  <span class="skill-chip"><span class="icon"><i class="fa-solid fa-comments"></i></span>NLP</span>
+  <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg"></span>Selenium</span>
+  <span class="skill-chip"><span class="icon"><i class="fa-solid fa-leaf"></i></span>BeautifulSoup</span>
+</div>
+
+      <!-- Database -->
+      <h4 class="text-sm font-semibold text-slate-400 mb-2">Database</h4>
+      <div class="skill-group mb-4">
+        <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"></span>MySQL</span>
+        <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg"></span>OracleDB</span>
+        <span class="skill-chip"><span class="icon"><i class="fa-solid fa-database"></i></span>SQL</span>
+      </div>
+
+      <!-- Infra / Collaboration -->
+      <h4 class="text-sm font-semibold text-slate-400 mb-2">Infra / Collaboration</h4>
+      <div class="skill-group">
+        <span class="skill-chip"><span class="icon"><img alt="AWS" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg"></span>AWS RDS</span>
+        <span class="skill-chip"><span class="icon"><img alt="AWS" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg"></span>AWS S3</span>
+        <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"></span>Git</span>
+        <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"></span>GitHub</span>
+        <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg"></span>Slack</span>
+        <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/notion/notion-original.svg"></span>Notion</span>
+      </div>
+    </div>
+
+    <!-- Tried -->
+    <div class="glass rounded-2xl p-6 border border-white/10">
+      <h3 class="font-semibold mb-4 text-lg">Tried</h3>
+
+      <!-- Backend / App (노력 중) -->
+      <h4 class="text-sm font-semibold text-slate-400 mb-2">Backend / App</h4>
+      <div class="skill-group mb-4">
+        <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg"></span>Flask</span>
+        <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"></span>React Native</span>
+      </div>
+
+      <h4 class="text-sm font-semibold text-slate-400 mb-2">Cloud / Infra</h4>
+      <div class="skill-group mb-4">
+        <span class="skill-chip"><span class="icon"><img alt="AWS" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg"></span>AWS</span>
+        <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-plain.svg"></span>Docker</span>
+        <span class="skill-chip">
+        <span class="icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+        </span>
+        Linux
+  </span>
+      </div>
+
+      <h4 class="text-sm font-semibold text-slate-400 mb-2">Architecture & Tools</h4>
+      <div class="skill-group">
+        <span class="skill-chip"><span class="icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-plain.svg"></span>Postman</span>
+        <span class="skill-chip"><span class="icon"><i class="fa-solid fa-wave-square"></i></span>WebSocket</span>
+        <span class="skill-chip"><span class="icon"><i class="fa-solid fa-robot"></i></span>LM Studio</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- ====== PROJECTS (경험 통합) ====== -->
+<section id="projects" class="py-16">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="flex items-end justify-between gap-4 mb-6">
+      <h2 class="text-xl font-bold">프로젝트</h2>
+      <div class="flex flex-wrap gap-2 text-xs">
+        <button class="filterBtn tag rounded-full px-3 py-1 border border-white/15 bg-white/5" data-filter="*">전체</button>
+        <button class="filterBtn tag rounded-full px-3 py-1 border border-white/15 bg-white/5" data-filter="backend">Backend</button>
+        <button class="filterBtn tag rounded-full px-3 py-1 border border-white/15 bg-white/5" data-filter="ai">AI/ML</button>
+        <button class="filterBtn tag rounded-full px-3 py-1 border border-white/15 bg-white/5" data-filter="mobile">Mobile</button>
+      </div>
+    </div>
+
+    <!-- 1열(가로 전체) 레이아웃 -->
+    <div id="projectGrid" class="grid grid-cols-1 gap-8">
+
+      <!-- ========== Finday (샘플: 오른쪽 이미지 갤러리 포함) ========== -->
+      <!-- ========== Finday (채용자 가독형 카드) ========== -->
+<article class="projectCard glass rounded-2xl border border-white/10 shadow-soft p-6" data-tags="backend ai">
+  <div class="md:grid md:grid-cols-12 gap-6 items-start">
+    <!-- LEFT: 텍스트 영역 -->
+    <div class="md:col-span-7">
+      <!-- 제목/기간 -->
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-lg font-semibold text-primary">
+          <b>Finday - 오픈뱅킹 웹 시뮬레이터</b>
+        </h3>
+        <span class="text-xs text-slate-400 whitespace-nowrap">개인 · 2025.05 ~ 2025.08</span>
+      </div>
+
+      <!-- 한 줄 요약 -->
+      <p class="mt-2 text-sm text-slate-300">
+        <b>Finday 서버</b>·<b>가상 KFTC 게이트웨이</b>·<b>가상 은행 서버</b> 간의 HTTP API로 연동하여<br>
+        <b>계좌/카드 조회, 이체, 결제, 거래내역</b>을 시뮬레이션.<br> 로그인 및 기타 인증 과정에서, <b>JWT + 얼굴인증(Flask/DeepFace)</b> 2단계 검증.
+      </p>
+
+      <!-- 메타/링크 -->
+      <div class="mt-4 text-sm flex flex-wrap gap-2">
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40" href="https://github.com/tpdus751/Finday_backend" target="_blank"><i class="fa-brands fa-github mr-1"></i> Backend</a>
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40" href="https://github.com/tpdus751/Finday_frontend" target="_blank"><i class="fa-brands fa-github mr-1"></i> Frontend</a>
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40" href="https://github.com/tpdus751/Finday-Flask-Face-Verification-DeepFace" target="_blank"><i class="fa-brands fa-github mr-1"></i> Flask(얼굴인증)</a>
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40" href="https://github.com/tpdus751/Finday-Bank-Server" target="_blank"><i class="fa-brands fa-github mr-1"></i> Bank Server</a>
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40" href="https://github.com/tpdus751?tab=repositories" target="_blank"><i class="fa-brands fa-github mr-1"></i> KFTC Gateway</a>
+      </div>
+
+      <!-- 문제 · 해결 · 결과 (핵심만 압축) -->
+      <div class="mt-4 space-y-3 text-sm">
+        <!-- 1 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold text-slate-200 mb-1"><i class="fa-solid fa-circle-exclamation mr-1 text-primary"></i> 단일 서버에서 오픈 뱅킹 시뮬레이션 구성의 한계</div>
+          <div class="text-slate-300">
+            <b>해결</b> · Finday 서버와 <b>가상 은행</b>/<b>가상 KFTC 게이트웨이</b>를 분리, <b>API 계약</b> 중심으로 통신.<br> 
+            <b>결과</b> · 기능/책임 경계 명확화, 변경 영향도 감소.
+          </div>
+        </div>
+        <!-- 2 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold text-slate-200 mb-1"><i class="fa-solid fa-arrow-right-arrow-left mr-1 text-primary"></i> 이체 중 출금 실패 시, 입금 불일치 위험</div>
+          <div class="text-slate-300">
+            <b>해결</b> · <b>게이트웨이 서버</b>에서 수동 트랜잭션 제어(롤백) 로직 구현.<br>
+            <b>결과</b> · 도중 실패 시 <b>원자성</b> 보장(출금/입금 불일치 방지).
+          </div>
+        </div>
+        <!-- 3 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold text-slate-200 mb-1"><i class="fa-solid fa-book mr-1 text-primary"></i> 연동 파라미터/응답 포맷 혼선</div>
+          <div class="text-slate-300">
+            <b>해결</b> · <b>Swagger UI</b>로 스키마/에러코드 문서화, 샘플 요청/응답 제공.<br>  
+            <b>결과</b> · 개발자 경험 개선, 디버깅/연동 속도 향상.
+          </div>
+        </div>
+        <!-- 4 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold text-slate-200 mb-1"><i class="fa-solid fa-gauge-high mr-1 text-primary"></i> 다중 은행 계좌 조회의 느린 응답</div>
+          <div class="text-slate-300">
+            <b>해결</b> · 순차 호출을 <b>parallelStream()</b> 병렬 호출로 전환, 지연 은행은 <b>빈 리스트 대체</b>.<br>
+            <b>결과</b> · 전체 조회 응답 <b>단축</b>, 지연 격리로 <b>안정성</b> 향상.
+          </div>
+        </div>
+        <!-- 5 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold text-slate-200 mb-1"><i class="fa-solid fa-shield-halved mr-1 text-primary"></i> JWT만으로는 본인확인 한계</div>
+          <div class="text-slate-300">
+            <b>해결</b> · <b>얼굴인식 2단계 인증</b>(Flask+DeepFace) 도입.<br>
+            <b>결과</b> · 접근 통제 강화, 민감 기능(이체·결제) 보안성 증대.
+          </div>
+        </div>
+      </div>
+
+      <!-- 기술 스택 태그 -->
+      <div class="mt-4 flex flex-wrap gap-2 text-xs">
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">React</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">face-api</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Spring Boot</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">JPA</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">MySQL</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">REST API</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Swagger UI</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Flask · DeepFace</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">AWS S3, RDS</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Monolith + Integration</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: 미디어 갤러리 -->
+    <div class="md:col-span-5 mt-4 md:mt-0">
+      <div class="grid grid-cols-2 gap-3">
+        <!-- 1. 비디오 타일 -->
+        <div class="col-span-2">
+          <div class="rounded-xl border border-white/10 overflow-hidden aspect-video">
+            <video
+              src="assets/projects/finday/face_detection.mp4"
+              class="w-full h-full object-cover"
+              controls
+              autoplay
+              muted
+              playsinline
+              preload="metadata"
+              poster="assets/projects/finday/demo1-poster.jpg">
+            </video>
+          </div>
+        </div>
+
+        <!-- 2. 이미지 타일(그대로 사용 가능) -->
+        <button class="proj-img col-span-2" data-full="assets/projects/finday/2.png" aria-label="Finday 화면 2">
+          <img src="assets/projects/finday/swaggerui.png"
+              class="w-full rounded-xl border border-white/10 object-cover aspect-video" alt="Finday 화면 2">
+        </button>
+
+        <!-- 2. 이미지 타일(그대로 사용 가능) -->
+        <button class="proj-img col-span-2" data-full="assets/projects/finday/2.png" aria-label="Finday 화면 2">
+          <img src="assets/projects/finday/finday_physical_structure.png"
+              class="w-full rounded-xl border border-white/10 object-cover aspect-video" alt="Finday 화면 2">
+        </button>
+      </div>
+      <p class="text-xs text-slate-400 mt-2">로그인 과정 / Swagger UI / 시스템 흐름 다이어그램</p>
+    </div>
+  </div>
+</article>
+
+      <!-- ========== 내돈내픽 — ML 추천 맛집 앱 (팀장) ========== -->
+<article class="projectCard glass rounded-2xl border border-white/10 shadow-soft p-6 md:col-span-2" data-tags="backend ai mobile">
+  <div class="md:grid md:grid-cols-12 gap-6 items-start">
+    <!-- LEFT -->
+    <div class="md:col-span-7">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-lg font-semibold text-primary"><b>내돈내픽 - ML 기반 가격·위치·취향(15) 맞춤 음식점 추천 앱</b></h3>
+        <span class="text-xs text-slate-400 whitespace-nowrap">팀장 · 2025.04 ~ 2025.07</span>
+      </div>
+      <p class="mt-2 text-sm text-slate-300">
+        <b>음식점 리뷰 크롤링 → 음식점 점수화 -> 사용자 음식점 리뷰 분석 → 사용자 점수화 → 모델 학습용 데이터 구성 → 모델 학습 → 파라미터 조정 → 추천</b>까지 전 과정을 직접 설계·구현한 E2E 파이프라인.<br>
+        추천 기능 외, 거리 기반 근처 음식점 확인, 음식점 검색, 예산 기능, 채팅 기능을 도입한 종합 서비스 제공.<br>
+        채팅 기능에 <b>감성분석 모델</b>을 적용하여, 사용자 채팅에 대한 긍정 음식점 순위 확인.<br>
+
+      </p>
+
+      <!-- 메타/링크 -->
+      <div class="mt-4 text-sm flex flex-wrap gap-2">
+        <span class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20"><i class="fa-solid fa-user-gear mr-1"></i> 팀장(기획·설계·통합)</span>
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40" href="https://github.com/tpdus751/naedonnaepick_backend" target="_blank"><i class="fa-brands fa-github mr-1"></i> Backend</a>
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40" href="https://github.com/tpdus751/naedonnaepick_frontend" target="_blank"><i class="fa-brands fa-github mr-1"></i> Frontend</a>
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40" href="https://github.com/tpdus751/naedonnaepick_flask_backend" target="_blank"><i class="fa-brands fa-github mr-1"></i> Flask</a>
+        <!-- ✅ 추가: PPT 정리 링크 -->
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
+          href="https://www.miricanvas.com/v/14rr18b" target="_blank">
+          <i class="fa-solid fa-file-powerpoint mr-1"></i> PPT 정리
+        </a>
+      </div>
+
+      <!-- 문제/해결/결과 - 채용자 관점 핵심만 -->
+      <div class="mt-4 space-y-3 text-sm">
+        <!-- 데이터 수집/정제 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-database mr-1 text-primary"></i>
+            <span>공공데이터만으로는 부족한 학습 샘플</span>
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · 네이버/카카오 등 <b>리뷰 크롤링</b>으로 원천 데이터 확보 →
+            konlpy(OKT)로 형태소화, 15개 취향 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;태그(예: spicy/cleanliness/value_for_money …)별 <b>1~5점 ‘사전’</b> 정의·매칭.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;유사도 ≥ 0.7만 반영, 평균 점수는 <b>SQLAlchemy</b>로 DB 저장. <br>
+            <b>결과</b> · 학습에 필요한 <b>구조화 점수 데이터</b>를 안정적으로 축적(약 4300개의 음식점 취향 점수화).
+          </div>
+        </div>
+
+        <!-- 리뷰 필터링/스코어링 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-filter mr-1 text-primary"></i>
+            <span>리뷰 노이즈(비음식/광고/짧은 글)로 품질 저하</span>
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · <b>OpenAI(GPT-4o)</b>를 사용해 음식점 관련 리뷰만 선별(다른 도메인 포함)<br> 
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ 길이 기준 상위 30개 리뷰를 취합해 15개 항목의 <b>선호도 점수(1.0~5.0)</b>를 JSON으로<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;산출하는 프롬프트 설계. <br>
+            <b>결과</b> · <b>노이즈 감소</b>와 일관된 스코어링으로 학습 데이터 품질 향상.
+          </div>
+        </div>
+
+        <!-- 추천 모델 구축 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-brain mr-1 text-primary"></i>
+            <span>사용자–매장 매칭 기준 정의와 검증</span>
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · 사용자 점수와 매장 점수의 <b>절댓값 차이</b>를 특징으로 구성 →
+            <b>RandomForest</b>로 80/20 검증<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(파라미터 탐색·실험 로그 정리). <br>
+            <b>결과</b> · 분류 정확도 <b>69.5%</b>(macro F1 ≈ 0.68, precision ≈ 0.69, recall ≈ 0.68)로
+            기본 모델<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;유효성 확인, 이후 서비스 추천 로직에 적용.
+          </div>
+        </div>
+
+        <!-- 성능/UX -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-location-dot mr-1 text-primary"></i>
+            <span>거리 계산·검색 지연</span>
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · DB의 위경도로 <b>Haversine</b>을 <b>Service 레이어</b>에서 계산, <b>Pagination/무한스크롤</b> 도입. <br>
+            <b>결과</b> · 외부 API 의존 제거, 검색 응답 체감 속도 개선·쿼리 부하 완화.
+          </div>
+        </div>
+
+        <!-- 팀 협업 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-people-group mr-1 text-primary"></i>
+            <span>팀원별 환경 차이로 통합 난항</span>
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · Git 브랜치 전략 및 <b>AWS RDS</b> 공유로 환경 표준화. <br>
+            <b>결과</b> · 마이그레이션 비용 없이 공용 DB로 <b>개발 일관성</b> 확보.
+          </div>
+        </div>
+
+        <!-- 부가 기능 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-robot mr-1 text-primary"></i>
+            <span>채팅에 AI 접목</span>
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · 채팅 내 <code>/음식점명</code> 질의에만 감성 분석을 적용해 월간 긍정 랭킹 시각화. <br>
+            <b>결과</b> · 추천 신뢰 보완 및 사용자 참여 증대.
+          </div>
+        </div>
+      </div>
+
+      <!-- 기술 태그 -->
+      <div class="mt-4 flex flex-wrap gap-2 text-xs">
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Spring Boot</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">JPA</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">MySQL</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">React Native</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Flask</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Machine Learning</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">AWS RDS</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">REST API</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">OpenAI API</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">konlpy(OKT)</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: 미디어 갤러리 -->
+    <div class="md:col-span-5 mt-4 md:mt-0">
+      <div class="grid grid-cols-2 gap-4">
+        <!-- 1. 비디오 타일 -->
+        <div class="col-span-2">
+          <div class="rounded-xl border border-white/10 overflow-hidden aspect-[424/956]">
+            <video
+              src="assets/projects/naedonnaepick/recommend.mp4"
+              class="w-full h-full object-contain bg-black"
+              controls
+              autoplay
+              muted
+              playsinline
+              preload="metadata"
+              poster="assets/projects/naedonnaepick/demo1-poster.jpg">
+            </video>
+          </div>
+        </div>
+
+        </div>
+      <p class="text-xs text-slate-400 mt-2">사용자 맞춤 음식점 추천 (대표 영상)</p>
+      
+    </div>
+  </div>
+</article>
+
+<!-- ========== 성남시 음식점 감성분석(KcELECTRA) ========== -->
+<article class="projectCard glass rounded-2xl border border-white/10 shadow-soft p-6 md:col-span-2" data-tags="ai backend">
+  <div class="md:grid md:grid-cols-12 gap-6 items-start">
+    <!-- LEFT -->
+    <div class="md:col-span-7">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-lg font-semibold text-primary"><b>kcElectra 모델 기반 감성분석을 활용한 성남시 음식점 분석 시각화 웹</b></h3>
+        <span class="text-xs text-slate-400 whitespace-nowrap">개인 · 2025.06</span>
+      </div>
+
+      <!-- Intro -->
+      <p class="mt-2 text-sm text-slate-300">
+        네이버/카카오 <b>리뷰 36만 건</b>을 직접 수집·정제하고, <b>beomi/KcELECTRA-base-v2022</b> 모델을 <br>파인튜닝하여 <b>Macro-F1 0.70</b>의 성능을 달성하였으며,
+        <b>부정/중립/긍정</b> 3클래스 감성 분류를 수행 및
+        <b>Streamlit 대시보드</b>로 시각화했습니다. 리뷰 기반 <b>장점/개선점 자동 요약</b>은 GPT-4o API로 제공하여
+        <br>지역 사용자와 식당 운영자 모두에게 <b>인사이트 제공</b>하는 프로젝트입니다.
+      </p>
+
+      <!-- Links -->
+      <div class="mt-4 text-sm flex flex-wrap gap-2">
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
+          href="https://github.com/tpdus751/seongnam-restaurant-sentiment-analysis" target="_blank">
+          <i class="fa-brands fa-github mr-1"></i> Project
+        </a>
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
+          href="https://github.com/tpdus751/naver_map_restaurant_review_crawl_process" target="_blank">
+          <i class="fa-brands fa-github mr-1"></i> 크롤링
+        </a>
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
+          href="https://github.com/tpdus751/restaurant_review_sentiment_analysis_model" target="_blank">
+          <i class="fa-brands fa-github mr-1"></i> 모델
+        </a>
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
+          href="https://seongnam-restaurant-sentiment-analysis-rawrwfpffhgojpkvdzu2dx.streamlit.app/" target="_blank">
+          <i class="fa-solid fa-up-right-from-square mr-1"></i> 실행하기
+        </a>
+      </div>
+
+
+      <!-- Problems / Solutions / Results -->
+      <div class="mt-4 space-y-3 text-sm">
+        <!-- 문제 1 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-server mr-1 text-primary"></i>
+            Streamlit 배포 시 실시간 음식점 리뷰 크롤링의 한계
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · 사전 크롤링 후 <b>CSV</b>로 저장해 조회 시 즉시 활용.<br>
+            <b>결과</b> · 사용자가 음식점 입력 → <b>대기 시간 크게 감소</b>.
+          </div>
+        </div>
+
+        <!-- 문제 2 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-scale-balanced mr-1 text-primary"></i>
+            LSTM 모델의 중립/부정 <b>재현율 저하</b>
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · 한국어 특화 <b>beomi/KcELECTRA-base-v2022</b> 파인튜닝(클래스 불균형 대응 포함).<br>
+            <b>결과</b> · F1(부정) <b>0.56→0.80</b>, F1(중립) <b>0.28→0.66</b>, <b>Macro-F1 0.59→0.73</b>로 균형 성능 확보.
+          </div>
+        </div>
+
+        <!-- 산출물 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-chart-pie mr-1 text-primary"></i>
+            산출물 · 대시보드 & 인사이트
+          </div>
+          <div class="text-slate-300">
+            <b>결과</b> · 확률 <b>상위 리뷰 하이라이트</b>, <b>워드클라우드/파이차트</b>, <b>GPT-요약(장점·개선점)</b> 제공으로 <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 지역 사용자·식당 운영자 모두가 <b>참고 가능한 인사이트</b>를 얻도록 구성.
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech tags -->
+      <div class="mt-4 flex flex-wrap gap-2 text-xs">
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Python</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Streamlit</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Selenium</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">KcELECTRA</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">OpenAI API</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">WordCloud</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: 미디어 갤러리 -->
+    <div class="md:col-span-5 mt-4 md:mt-0">
+      <div class="grid grid-cols-2 gap-3">
+        <!-- 1. 비디오 타일 -->
+        <div class="col-span-2">
+          <div class="rounded-xl border border-white/10 overflow-hidden aspect-video">
+            <video
+              src="assets/projects/sentimentAnalysis/sentimentAnalysisVideo.mp4"
+              class="w-full h-full object-full"
+              controls
+              autoplay
+              muted
+              playsinline
+              preload="metadata"
+              poster="assets/projects/finday/demo1-poster.jpg">
+            </video>
+          </div>
+        </div>
+
+        <!-- 2. 이미지 타일(그대로 사용 가능) -->
+        <button class="proj-img col-span-2" data-full="assets/projects/finday/2.png" aria-label="Finday 화면 2">
+          <img src="assets/projects/sentimentAnalysis/classification_report.png"
+              class="w-full rounded-xl border border-white/10 object-full aspect-video" alt="Finday 화면 2">
+        </button>
+      </div>
+      <p class="text-xs text-slate-400 mt-2">시연 영상 / 최종 감성분석 모델 성능 지표</p>
+  </div>
+</article>
+
+<!-- ========== 이미지 분류(25클래스) — InceptionResNetV2 전이학습 ========== -->
+<article class="projectCard glass rounded-2xl border border-white/10 shadow-soft p-6 md:col-span-2" data-tags="ai">
+  <div class="md:grid md:grid-cols-12 gap-6 items-start">
+    <div class="md:col-span-7">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-lg font-semibold text-primary"><b>InceptionResNetV2 전이학습을 통한 25개 이미지 클래스 분류</b></h3>
+        <span class="text-xs text-slate-400 whitespace-nowrap">개인 · 2025.06</span>
+      </div>
+      <p class="mt-2 text-sm text-slate-300"><b>InceptionResNetV2 전이학습</b>을 활용하여, 직접 수집한 총 25개의 일상 사물 및 자동차 이미지를 분류하는 이미지 분류 모델 구축, 검증 정확도 <b>97%</b> 이상 달성
+
+      <div class="mt-4 text-sm flex flex-wrap gap-2">
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
+          href="https://github.com/tpdus751/resnetv2-transfer-learning-25classes" target="_blank">
+          <i class="fa-brands fa-github mr-1"></i> Project
+        </a>
+      </div>
+
+
+      <div class="mt-4 space-y-3 text-sm">
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1"><i class="fa-solid fa-cubes mr-1 text-primary"></i> 왜 InceptionResNetV2인가? (모델 선택 근거)</div>
+          <div class="text-slate-300">
+            <b>해결</b> · 25개 클래스가 크기·형태가 다양해 <u>멀티스케일 특징</u>과 <u>안정적 수렴</u>이 핵심. Inception<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(병렬 커널)+ResNet(스킵 연결)을 결합한 <b>InceptionResNetV2</b>를 채택.<br>
+            
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>멀티스케일</b>: 1×1/3×3/5×5 병렬로 작은 디테일부터 큰 실루엣까지 포착.<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>안정 수렴</b>: Residual로 기울기 소실 완화 → 전이학습 시 빠르고 안정.<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>효율</b>: 성능 대비 파라미터·추론 비용이 과도하게 크지 않음.<br>
+          
+            <b>결과</b> · 초기 수렴 안정·과적합 완화로 <u>검증 정확도 97% 달성</u>, 지표 변동폭 감소.
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1"><i class="fa-solid fa-layer-group mr-1 text-primary"></i> 사전학습 Top층 클래스 수 불일치·과적합 우려</div>
+          <div class="text-slate-300"><b>해결</b> · <b>include_top=false</b>로 제거 후 <b>GAP→Dropout→Dense(1024)→Dropout→Dense(25)</b> 커스텀 헤드.<br> 
+            <b>결과</b> · 클래스 적합·일반화 개선.</div>
+        </div>
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1"><i class="fa-solid fa-sliders mr-1 text-primary"></i> 학습 정확도에 비해 낮은 검증 정확도, 다양한 요인의 하이퍼파라미터 최적화 도출 어려움</div>
+          <div class="text-slate-300"><b>해결</b> · 약 10개 노트북으로 <b>Dropout 비율·LR·Dense 구조</b> 실험·로그 비교.<br>  
+            <b>결과</b> · 과적합 완화(<b>검증 정확도 97% 달성</b>), 지표 안정화.</div>
+        </div>
+      </div>
+
+      <div class="mt-4 flex flex-wrap gap-2 text-xs">
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">TensorFlow</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">InceptionResNetV2</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Python</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: 미디어 갤러리 -->
+    <div class="md:col-span-5 mt-4 md:mt-0">
+      <div class="grid grid-cols-2 gap-3">
+
+        <!-- 2. 이미지 타일(그대로 사용 가능) -->
+        <button class="proj-img col-span-2" data-full="assets/projects/finday/2.png" aria-label="Finday 화면 2">
+          <img src="assets/projects/25_classification/graph.png"
+              class="w-full rounded-xl border border-white/10 object-full aspect-video" alt="Finday 화면 2">
+        </button>
+
+        <!-- 2. 이미지 타일(그대로 사용 가능) -->
+        <button class="proj-img col-span-2" data-full="assets/projects/finday/2.png" aria-label="Finday 화면 2">
+          <img src="assets/projects/25_classification/show_match.png"
+              class="w-full rounded-xl border border-white/10 object-full aspect-video" alt="Finday 화면 2">
+        </button>
+      </div>
+      <p class="text-xs text-slate-400 mt-2">시연 영상 / 최종 감성분석 모델 성능 지표</p>
+  </div>
+</article>
+
+<!-- ========== 키워드 빈도수 분석 및 시각화 ========== 
+<article class="projectCard glass rounded-2xl border border-white/10 shadow-soft p-6 md:col-span-2" data-tags="ai backend">
+  <div class="md:grid md:grid-cols-12 gap-6 items-start">
+    <div class="md:col-span-7">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-lg font-semibold text-primary"><b>한국어 자연어 처리(NLP) 기반 키워드 빈도수 분석 및 시각화 웹</b></h3>
+        <span class="text-xs text-slate-400 whitespace-nowrap">개인 · 2025.04</span>
+      </div>
+      <p class="mt-2 text-sm text-slate-300">한국어 뉴스 기사 데이터(csv)를 기반으로 핵심 키워드를 추출하고 시각화하여 Insight 발굴에<br> 도움을 주는
+         Streamlit 기반 웹 애플리케이션</p>
+
+      <div class="mt-4 space-y-3 text-sm">
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1"><i class="fa-solid fa-language mr-1 text-primary"></i> 품사 전량 토큰화로 노이즈 과다</div>
+          <div class="text-slate-300"><b>해결</b> · <b>명사(Noun) 한정</b> 추출. <br>
+            <b>결과</b> · 핵심 키워드 집중도 상승.</div>
+        </div>
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1"><i class="fa-solid fa-filter mr-1 text-primary"></i> “등/수” 등 불필요 명사로 시각화 왜곡</div>
+          <div class="text-slate-300"><b>해결</b> · <b>불용어 사전</b> 구성·필터링.  <br>
+            <b>결과</b> · 시각화 신뢰도 향상.</div>
+        </div>
+      </div>
+
+      <div class="mt-4 flex flex-wrap gap-2 text-xs">
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Python</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Streamlit</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">konlpy</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Matplotlib</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">WordCloud</span>
+      </div>
+
+      <div class="mt-4 text-sm">
+        <a class="underline decoration-primary/50" href="https://github.com/tpdus751/keywordVisualizerByStreamlitAndConsole" target="_blank">리포지토리</a>
+      </div>
+    </div>
+
+    <div class="md:col-span-5 mt-4 md:mt-0">
+      <div class="grid grid-cols-2 gap-3">
+        <button class="proj-img" data-full="assets/projects/keyword/1.png"><img src="assets/projects/keyword/1.png" class="w-full rounded-xl border border-white/10 object-cover aspect-video" alt=""></button>
+        <button class="proj-img" data-full="assets/projects/keyword/2.png"><img src="assets/projects/keyword/2.png" class="w-full rounded-xl border border-white/10 object-cover aspect-video" alt=""></button>
+        <button class="proj-img col-span-2" data-full="assets/projects/keyword/3.png"><img src="assets/projects/keyword/3.png" class="w-full rounded-xl border border-white/10 object-cover aspect-video" alt=""></button>
+      </div>
+      <p class="text-xs text-slate-400 mt-2">키워드 차트 / 트렌드 / 전처리 결과</p>
+    </div>
+  </div>
+</article>
+-->
+
+<!-- ========== 블록체인 실습 — SHA-256 · 서명 · PoW ========== -->
+<article class="projectCard glass rounded-2xl border border-white/10 shadow-soft p-6 md:col-span-2" data-tags="backend">
+  <div class="md:grid md:grid-cols-12 gap-6 items-start">
+    <div class="md:col-span-7">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-lg font-semibold text-primary"><b>블록체인 실습 — Java를 활용한 블록, 트랜잭션, 해시, 전자서명, PoW</b></h3>
+        <span class="text-xs text-slate-400 whitespace-nowrap">개인 · 2025.01</span>
+      </div>
+      <p class="mt-2 text-sm text-slate-300"><b>Java</b>를 활용하여 블록, 트랜잭션, 해시, 작업증명(PoW) 등의 <b>블록체인 구조</b>를 직접 구현한 시뮬레이션<br> 프로젝트로, 
+          암호화폐의 핵심 기술인 <b>블록체인의 원리</b>를 실습을 통해 체득하기 위한 목적</p>
+
+      <div class="mt-4 text-sm flex flex-wrap gap-2">
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
+          href="https://github.com/tpdus751/blockchain-java-simulation" target="_blank">
+          <i class="fa-brands fa-github mr-1"></i> Project
+        </a>
+      </div>
+
+      <div class="mt-4 space-y-3 text-sm">
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1"><i class="fa-solid fa-link mr-1 text-primary"></i> 체인 연결·해시 설계</div>
+          <div class="text-slate-300"><b>해결</b> · <b>previousBlockHash</b> 참조, 트랜잭션을 포함해 해시 생성.<br>  
+            <b>결과</b> · 변경 감지·무결성 확보.</div>
+        </div>
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1"><i class="fa-solid fa-lock mr-1 text-primary"></i> SHA-256 구현 난점</div>
+          <div class="text-slate-300"><b>해결</b> · <b>MessageDigest</b> API 활용.  <br>
+            <b>결과</b> · 안정적 해시 생성.</div>
+        </div>
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1"><i class="fa-solid fa-hammer mr-1 text-primary"></i> PoW 채굴 조건 만족 로직 필요</div>
+          <div class="text-slate-300"><b>해결</b> · mine() 함수 구현하여 <b>nonce</b> 증가 반복으로 목표 해시(예: 0000*) 찾기.<br>  
+            <b>결과</b> · 채굴 성공 시점 감지, 난이도 기반 채굴 시뮬레이션 확장 가능.</div>
+        </div>
+      </div>
+
+      <div class="mt-4 flex flex-wrap gap-2 text-xs">
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Java</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">SHA-256</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Java Security API</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">PoW</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: 미디어 갤러리 -->
+    <div class="md:col-span-5 mt-4 md:mt-0">
+      <div class="grid grid-cols-2 gap-4">
+        <!-- 1. 비디오 타일 -->
+        <div class="col-span-2">
+          <div class="rounded-xl border border-white/10 overflow-hidden aspect-[1552/996]">
+            <video
+              src="assets/projects/blockchain/blockchain_show.mp4"
+              class="w-full h-full object-contain bg-black"
+              controls
+              autoplay
+              muted
+              playsinline
+              preload="metadata"
+              poster="assets/projects/blockchain/demo1-poster.jpg">
+            </video>
+          </div>
+        </div>
+
+        </div>
+      <p class="text-xs text-slate-400 mt-2">체인 생성 / 변조 시연</p>
+  </div>
+</article>
+
+<!-- ========== QuizBank — IT 문제 공유/모의시험 웹 ========== -->
+<article class="projectCard glass rounded-2xl border border-white/10 shadow-soft p-6 md:col-span-2" data-tags="backend">
+  <div class="md:grid md:grid-cols-12 gap-6 items-start">
+    <div class="md:col-span-7">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-lg font-semibold text-primary"><b>QuizBank — IT 문제 등록·공유·모의시험 응시 웹 사이트</b></h3>
+        <span class="text-xs text-slate-400 whitespace-nowrap">개인 · 2024.11 ~ 2024.12</span>
+      </div>
+
+      <p class="mt-2 text-sm text-slate-300">
+        시험 기간 중 <b>학습과 프로젝트 구현을 병행</b>하기 위해 설계된 문제은행 서비스. 사용자는 <b>객관식·주관식</b> 문제를
+        <b>등록·공유</b>하고, 과목별/전체 <b>랜덤 모의시험</b>에 응시할 수 있습니다. 카카오 로그인, 어려운 문제 확인, 시험 결과,
+        사용자 참여 이벤트, 크레딧 제공 기능 포함.
+      </p>
+
+      <!-- [QuizBank] 레포지토리 아이콘 + DOCX 다운로드 추가 -->
+<div class="mt-4 text-sm flex flex-wrap gap-2">
+  <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
+     href="https://github.com/tpdus751/QuizBank_WEB" target="_blank">
+     <i class="fa-brands fa-github mr-1"></i> Project
+  </a>
+  <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
+     href="/assets/projects/quizbank/report.docx" download>
+     <i class="fa-regular fa-file-word mr-1"></i> 보고서(DOCX)
+  </a>
+</div>
+
+      <!-- 문제·해결·결과 -->
+      <div class="mt-4 space-y-3 text-sm">
+
+        <!-- 객관식 랜덤화 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1"><i class="fa-solid fa-shuffle mr-1 text-primary"></i> 객관식 정답 암기 이슈</div>
+          <div class="text-slate-300">
+            <b>해결</b> · Service 레이어에서 <b>보기 순서 랜덤화</b> 처리. <br>
+            <b>결과</b> · 예측 가능성 ↓, 공정성 ↑.
+          </div>
+        </div>
+
+        <!-- 댓글 UX -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1"><i class="fa-solid fa-shuffle mr-1 text-primary"></i> 댓글 CRUD 시 전체 새로고침 → 사용자 경험 저하</div>
+          <div class="text-slate-300">
+            <b>해결</b> · <b>AJAX</b> 기반 비동기 요청으로 댓글 영역만 갱신. <br>
+            <b>결과</b> · 불필요 렌더링 축소, UX 개선.
+          </div>
+        </div>
+
+        <!-- 관리자 페이지 접근 제어 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1"><i class="fa-solid fa-shuffle mr-1 text-primary"></i>
+            관리자 페이지 URL 조작 접근
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · 세션의 <code>loginMemberVO</code>에서 권한을 확인하여 <code>getType() == "S"</code> (관리자)만 통과.
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;미인증/권한 부족은 <b>로그인/403</b>으로 리다이렉트. <br>
+            <b>결과</b> · 모든 관리자 화면에 대해 <b>일반 사용자/비로그인 접근 차단</b>, 단순 URL 조작 방어.
+          </div>
+        </div>
+
+        <!-- 계층형 댓글(원답글/다답글) -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-sitemap mr-1 text-primary"></i>
+            원글의 답글, 답글의 답글을 구현하는 것을 구현해야 함
+          </div>
+          <div class="text-slate-300 text-sm">
+            <div>
+              <b>해결</b>
+              <ul class="list-disc pl-5 space-y-1">
+                <li><b>스키마 추가</b> : 
+                  <u><code>originNo</code>(그룹키)</u>, <u><code>groupOrd</code>(그룹 내 순서)</u>, <u><code>groupLayer</code>(깊이)</u>
+                </li>
+                <li><b>원글</b>: <code>originNo=code</code>, <code>groupOrd=0</code>, <code>groupLayer=0</code></li>
+                <li><b>답글 삽입 규칙</b>:
+                  <code>originNo=부모.originNo</code>,
+                  <code>groupOrd=부모.groupOrd+1</code>,
+                  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>groupLayer=부모+1</code>
+                  삽입 전 “밀어내기”<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ <code><b>"UPDATE...SET groupOrd = groupOrd + 1</b><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>WHERE originNo = ? AND groupOrd &gt;= ?"</b></code>
+                </li>
+                <li><b>목록 정렬</b>:
+                  <code>ORDER BY originNo DESC, groupOrd ASC</code>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <b>결과</b> · 대댓글이 많아도
+              <b>계층 순서/들여쓰기</b>가 안정적으로 유지되고, 조회/렌더링 규칙이 단순화됨.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 기술 태그 -->
+      <div class="mt-4 flex flex-wrap gap-2 text-xs">
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">JSP/JSTL/Servlet</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">MyBatis</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">OracleDB</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">jQuery</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: 미디어 갤러리 -->
+    <div class="md:col-span-5 mt-4 md:mt-0">
+      <div class="grid grid-cols-2 gap-4">
+        <!-- 1. 비디오 타일 -->
+        <div class="col-span-2">
+          <div class="rounded-xl border border-white/10 overflow-hidden aspect-[1920/1200]">
+            <video
+              src="assets/projects/quizbank/quizbank_show_full.mp4"
+              class="w-full h-full object-contain bg-black"
+              controls
+              autoplay
+              muted
+              playsinline
+              preload="metadata"
+              poster="assets/projects/blockchain/demo1-poster.jpg">
+            </video>
+          </div>
+        </div>
+        <!-- 2. 이미지 타일(그대로 사용 가능) -->
+        <button class="proj-img col-span-2" data-full="assets/projects/finday/2.png" aria-label="Finday 화면 2">
+          <img src="assets/projects/quizbank/architecture.png"
+              class="w-full rounded-xl border border-white/10 object-full aspect-video" alt="Finday 화면 2">
+        </button>
+
+        <!-- 2. 이미지 타일(그대로 사용 가능) -->
+        <button class="proj-img col-span-2" data-full="assets/projects/finday/2.png" aria-label="Finday 화면 2">
+          <img src="assets/projects/quizbank/erd.png"
+              class="w-full rounded-xl border border-white/10 object-full aspect-video" alt="Finday 화면 2">
+        </button>
+
+        </div>
+      <p class="text-xs text-slate-400 mt-2">QuizBank 시연 영상 / 아키텍처 / ERD</p>
+      </p>
+  </div>
+</article>
+
+
+<!-- ========== Java 멀티스레드 채팅 프로그램 ========== -->
+<article class="projectCard glass rounded-2xl border border-white/10 shadow-soft p-6 md:col-span-2" data-tags="backend">
+  <div class="md:grid md:grid-cols-12 gap-6 items-start">
+    <div class="md:col-span-7">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-lg font-semibold text-primary"><b>Java, Multi Thread, Socket 기반 채팅 프로그램</b></h3>
+        <span class="text-xs text-slate-400 whitespace-nowrap">개인 · 2024.10</span>
+      </div>
+      <p class="mt-2 text-sm text-slate-300"><b>Java</b> 기반의 <b>소켓 통신</b>과 <b>멀티스레드</b> 구조를 활용하여 구현한 <b>실시간 채팅 프로그램</b>으로, <br><u>닉네임 변경</u>, <u>멘션</u>, <u>이미지
+         전송</u>, <u>사용자 목록 확인</u>, <u>대화 로그 저장</u> 등 다양한 채팅 기능을 명령어로 제공. 저수준 네트워크 통신과 예외 
+         처리, 사용자 인터페이스 설계 등을 직접 구현.</p>
+
+      <!-- [Java 소켓 채팅] 레포지토리 아이콘 + DOCX 다운로드 추가 -->
+      <div class="mt-4 text-sm flex flex-wrap gap-2">
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
+          href="https://github.com/tpdus751/ChatProgram_JAVA" target="_blank">
+          <i class="fa-brands fa-github mr-1"></i> Project
+        </a>
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
+          href="/assets/projects/java_chat/report.docx" download>
+          <i class="fa-regular fa-file-word mr-1"></i> 보고서(DOCX)
+        </a>
+      </div>
+
+      <div class="mt-4 space-y-3 text-sm">
+
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1"><i class="fa-solid fa-id-card mr-1 text-primary"></i> 사용자 증가 시, 2차원 배열 닉네임 중복 검사 성능 저하</div>
+          <div class="text-slate-300"><b>해결</b> · <b>Hashtable&lt;String, ClientHandler&gt;</b>로 사용자 닉네임을 key로 관리.<br> 
+            <b>결과</b> · 동시 사용자 증가에도 O(1)의 시간 복잡도 성능 안정.</div>
+        </div>
+
+
+        <!-- 다중 접속/중계 안정화 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-users mr-1 text-primary"></i> 다수 사용자 동시 접속 시 중계 안정성 필요
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · 서버 <b>accept 루프</b> + 접속 당 <b>전용 스레드</b> 생성, 공용 맵(Hashtable)로 세션 관리. <br>
+            <b>결과</b> · 단일 서버에서 <b>여러 사용자 실시간 채팅</b> 안정 지원.
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1"><i class="fa-solid fa-code-branch mr-1 text-primary"></i> 명령어 처리 로직의 복잡성 및 코드 가독성 저하</div>
+          <div class="text-slate-300"><b>해결</b> · message.startWith("/명령어") 기반 라우팅 + <b>기능별 메서드</b> 분리.<br>  
+            <b>결과</b> · 가독성·유지보수성 향상, 명령 추가 시 영향 범위 축소.</div>
+        </div>
+
+        <!-- 귓속말 프로토콜 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-paper-plane mr-1 text-primary"></i> 특정 사용자에게만 메시지 전송(멘션)
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · <code>/to 대상닉네임 메시지</code> 파싱(<code>StringTokenizer</code>) 후 대상 세션에만 전송. <br>
+            <b>결과</b> · <b>1:1 비공개 메시지</b> 제공, 방해 최소화.
+          </div>
+        </div>
+
+        <!-- 이미지 전송/다운로드 프로토콜 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-image mr-1 text-primary"></i> 파일 송수신 프로토콜 부재
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · <code>보낼 사용자는 /img 파일명</code>으로 BufferedInputStream으로 이미지를 읽어들인 후 소켓에 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;발신 → 서버는 DataInputStream으로 읽어들인 후 <code>/notify</code>로 배포 안내 → <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;타 사용자가 <code>/download 파일명</code>으로 요청 시 서버가 바이너리 스트림 전송.  <br>
+            <b>결과</b> · <b>이미지 공유/다운로드</b>가 안정적으로 동작.
+          </div>
+        </div>
+
+        <!-- 로그 저장 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-file-lines mr-1 text-primary"></i> 대화 기록 보존 필요
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · 클라이언트 측 <b>List</b>에 로그 누적, <code>/save</code> 입력 시 <b>타임스탬프 파일명</b>으로 저장. <br>
+            <b>결과</b> · 재현/회고 가능한 <b>텍스트 로그</b> 확보.
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="mt-4 flex flex-wrap gap-2 text-xs">
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Java</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Socket</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Thread</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: 미디어 갤러리 -->
+    <div class="md:col-span-5 mt-4 md:mt-0">
+      <div class="grid grid-cols-2 gap-4">
+        <!-- 2. 이미지 타일(그대로 사용 가능) -->
+        <button class="proj-img col-span-2" data-full="assets/projects/finday/2.png" aria-label="Finday 화면 2">
+          <img src="assets/projects/java_chat/option.png"
+              class="w-full rounded-xl border border-white/10 object-full aspect-video" alt="Finday 화면 2">
+        </button>
+        <!-- 2. 이미지 타일(그대로 사용 가능) -->
+        <button class="proj-img col-span-2" data-full="assets/projects/finday/2.png" aria-label="Finday 화면 2">
+          <img src="assets/projects/java_chat/img2.png"
+              class="w-full rounded-xl border border-white/10 object-full aspect-video" alt="Finday 화면 2">
+        </button>
+
+        <!-- 2. 이미지 타일(그대로 사용 가능) -->
+        <button class="proj-img col-span-2" data-full="assets/projects/finday/2.png" aria-label="Finday 화면 2">
+          <img src="assets/projects/java_chat/img3.png"
+              class="w-full rounded-xl border border-white/10 object-full aspect-video" alt="Finday 화면 2">
+        </button>
+
+        </div>
+        <p class="text-xs text-slate-400 mt-2">명령어 확인 / 4명의 채팅 환경 / 채팅 화면</p>
+        </p>
+  </div>
+</article>
+
+
+    <!-- ====== CONTACT ====== -->
+
+    <footer class="border-t border-white/10 py-10">
+      <div class="mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-400">
+        <p>© <span id="year"></span> 박세연. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <a href="#top" class="hover:text-primary-100">맨 위로</a>
+          <a href="https://cafe.naver.com/snpaisw" target="_blank" class="hover:text-primary-100">학과 카페</a>
+          <a href="https://www.youtube.com/@aisw-snp" target="_blank" class="hover:text-primary-100">학과 유튜브</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ====== SCRIPTS ====== -->
+    <script>
+      // 라이트박스
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightboxImg');
+      document.querySelectorAll('.proj-img').forEach(btn => {
+        btn.addEventListener('click', () => {
+          lbImg.src = btn.dataset.full;
+          lb.classList.remove('hidden');
+          lb.classList.add('flex');
+        });
+      });
+      lb?.addEventListener('click', () => {
+        lb.classList.add('hidden');
+        lb.classList.remove('flex');
+        lbImg.src = '';
+      });
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      menuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+      // Theme toggle (persist via localStorage)
+      const themeBtn = document.getElementById('themeToggle');
+      const root = document.documentElement;
+      const THEME_KEY = 'theme';
+      const applyTheme = (mode) => {
+        if (mode === 'light') {
+          root.style.setProperty('--tw-bg-opacity', '1');
+          document.body.classList.remove('gradient-bg');
+          document.body.classList.add('bg-white', 'text-slate-800');
+        } else {
+          document.body.classList.remove('bg-white', 'text-slate-800');
+          document.body.classList.add('gradient-bg', 'text-slate-200');
+        }
+        localStorage.setItem(THEME_KEY, mode);
+      };
+      const saved = localStorage.getItem(THEME_KEY) || 'dark';
+      applyTheme(saved);
+      themeBtn?.addEventListener('click', () => {
+        const next = (localStorage.getItem(THEME_KEY) || 'dark') === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+      });
+
+      // Project filter
+      const buttons = document.querySelectorAll('.filterBtn');
+      const cards = document.querySelectorAll('.projectCard');
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const key = btn.dataset.filter;
+          buttons.forEach((b) => b.classList.remove('ring-1', 'ring-primary'));
+          btn.classList.add('ring-1', 'ring-primary');
+          cards.forEach((card) => {
+            const tags = (card.dataset.tags || '').split(' ');
+            card.style.display = key === '*' || tags.includes(key) ? 'block' : 'none';
+          });
+        });
+      });
+    </script>
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "박세연",
+        "jobTitle": "Backend Developer",
+        "url": "https://tpdus751.github.io",
+        "email": "mailto:751psy@gmail.com",
+        "sameAs": ["https://github.com/tpdus751"]
+      }
+    </script>
+  </body>
+</html>
