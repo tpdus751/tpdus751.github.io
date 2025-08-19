@@ -882,12 +882,12 @@
         <div class="rounded-xl border border-white/10 bg-white/5 p-3">
           <div class="font-semibold mb-1"><i class="fa-solid fa-cubes mr-1 text-primary"></i> 왜 InceptionResNetV2인가? (모델 선택 근거)</div>
           <div class="text-slate-300">
-            <b>해결</b> · 25개 클래스가 크기·형태가 다양해 <u>멀티스케일 특징</u>과 <u>안정적 수렴</u>이 핵심. Inception<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(병렬 커널)+ResNet(스킵 연결)을 결합한 <b>InceptionResNetV2</b>를 채택.<br>
+            25개 클래스가 크기·형태가 다양해 <u>멀티스케일 특징</u>과 <u>안정적 수렴</u>이 핵심.<br>
+            Inception(병렬 커널)+ResNet(스킵 연결)을 결합한 <b>InceptionResNetV2</b>를 채택.<br>
             
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>멀티스케일</b>: 1×1/3×3/5×5 병렬로 작은 디테일부터 큰 실루엣까지 포착.<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>안정 수렴</b>: Residual로 기울기 소실 완화 → 전이학습 시 빠르고 안정.<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>효율</b>: 성능 대비 파라미터·추론 비용이 과도하게 크지 않음.<br>
+              <b>멀티스케일</b>: 1×1/3×3/5×5 병렬로 작은 디테일부터 큰 실루엣까지 포착.<br>
+              <b>안정 수렴</b>: Residual로 기울기 소실 완화 → 전이학습 시 빠르고 안정.<br>
+              <b>효율</b>: 성능 대비 파라미터·추론 비용이 과도하게 크지 않음.<br>
           
             <b>결과</b> · 초기 수렴 안정·과적합 완화로 <u>검증 정확도 97% 달성</u>, 지표 변동폭 감소.
           </div>
@@ -1217,20 +1217,13 @@
 
       <div class="mt-4 space-y-3 text-sm">
 
-        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
-          <div class="font-semibold mb-1"><i class="fa-solid fa-id-card mr-1 text-primary"></i> 사용자 증가 시, 2차원 배열 닉네임 중복 검사 성능 저하</div>
-          <div class="text-slate-300"><b>해결</b> · <b>Hashtable&lt;String, ClientHandler&gt;</b>로 사용자 닉네임을 key로 관리.<br> 
-            <b>결과</b> · 동시 사용자 증가에도 O(1)의 시간 복잡도 성능 안정.</div>
-        </div>
-
-
         <!-- 다중 접속/중계 안정화 -->
         <div class="rounded-xl border border-white/10 bg-white/5 p-3">
           <div class="font-semibold mb-1">
-            <i class="fa-solid fa-users mr-1 text-primary"></i> 다수 사용자 동시 접속 시 중계 안정성 필요
+            <i class="fa-solid fa-users mr-1 text-primary"></i> 다수 사용자를 지원하는 안정적인 채팅 서버 구현 목표
           </div>
           <div class="text-slate-300">
-            <b>해결</b> · 서버 <b>accept 루프</b> + 접속 당 <b>전용 스레드</b> 생성, 공용 맵(Hashtable)로 세션 관리. <br>
+            <b>해결</b> · 서버 <b>accept 루프</b> + 접속 당 <b>전용 스레드, 소켓</b> 생성, 공용 맵(<b>Hashtable</b>)으로<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 사용자 닉네임을 key로 세션 관리. <br>
             <b>결과</b> · 단일 서버에서 <b>여러 사용자 실시간 채팅</b> 안정 지원.
           </div>
         </div>
@@ -1258,7 +1251,7 @@
             <i class="fa-solid fa-image mr-1 text-primary"></i> 파일 송수신 프로토콜 부재
           </div>
           <div class="text-slate-300">
-            <b>해결</b> · <code>보낼 사용자는 /img 파일명</code>으로 BufferedInputStream으로 이미지를 읽어들인 후 소켓에 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;발신 → 서버는 DataInputStream으로 읽어들인 후 <code>/notify</code>로 배포 안내 → <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;타 사용자가 <code>/download 파일명</code>으로 요청 시 서버가 바이너리 스트림 전송.  <br>
+            <b>해결</b> · 보낼 사용자는 /img 파일명으로 BufferedInputStream으로 이미지를 읽어들인 후 소켓에 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;발신 → 서버는 DataInputStream으로 읽어들인 후 <code>/notify</code>로 배포 안내 → <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;타 사용자가 <code>/download 파일명</code>으로 요청 시 서버가 바이너리 스트림 전송.  <br>
             <b>결과</b> · <b>이미지 공유/다운로드</b>가 안정적으로 동작.
           </div>
         </div>
@@ -1266,11 +1259,11 @@
         <!-- 로그 저장 -->
         <div class="rounded-xl border border-white/10 bg-white/5 p-3">
           <div class="font-semibold mb-1">
-            <i class="fa-solid fa-file-lines mr-1 text-primary"></i> 대화 기록 보존 필요
+            <i class="fa-solid fa-file-lines mr-1 text-primary"></i> 서버 종료 시, 사용자 쓰레드가 종료되지 않음
           </div>
           <div class="text-slate-300">
-            <b>해결</b> · 클라이언트 측 <b>List</b>에 로그 누적, <code>/save</code> 입력 시 <b>타임스탬프 파일명</b>으로 저장. <br>
-            <b>결과</b> · 재현/회고 가능한 <b>텍스트 로그</b> 확보.
+            <b>해결</b> · connectClient()에서 데몬 스레드 처리 → <b>thread.setDaemon(true)</b><br>
+            <b>결과</b> · 서버가 종료될 때 쓰레드도 같이 종료.
           </div>
         </div>
       </div>
