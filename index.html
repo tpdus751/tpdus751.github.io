@@ -483,8 +483,156 @@
     <!-- 1열(가로 전체) 레이아웃 -->
     <div id="projectGrid" class="grid grid-cols-1 gap-8">
 
-      <!-- ========== Finday (샘플: 오른쪽 이미지 갤러리 포함) ========== -->
-      <!-- ========== Finday (채용자 가독형 카드) ========== -->
+<!-- ========== 내돈내픽 — ML 추천 맛집 앱 (팀장) ========== -->
+<article class="projectCard glass rounded-2xl border border-white/10 shadow-soft p-6 md:col-span-2" data-tags="backend ai mobile">
+  <div class="md:grid md:grid-cols-12 gap-6 items-start">
+    <!-- LEFT -->
+    <div class="md:col-span-7">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-lg font-semibold text-primary"><b>내돈내픽 - ML 기반 가격·위치·취향(15) 맞춤 음식점 추천 앱</b></h3>
+        <span class="text-xs text-slate-400 whitespace-nowrap">팀장 · 2025.04 ~ 2025.07</span>
+      </div>
+      <p class="mt-2 text-sm text-slate-300">
+        <b>음식점 리뷰 크롤링 → 음식점 점수화 -> 사용자 음식점 리뷰 분석 → 사용자 점수화 → 모델 학습용 데이터 구성 → 모델 학습 → 파라미터 조정 → 추천</b>까지 전 과정을 직접 설계·구현한 E2E 파이프라인.<br>
+        추천 기능 외, 거리 기반 근처 음식점 확인, 음식점 검색, 예산 기능, 채팅 기능을 도입한 종합 서비스 제공.<br>
+        채팅 기능에 <b>감성분석 모델</b>을 적용하여, 사용자 채팅에 대한 긍정 음식점 순위 확인.<br>
+
+      </p>
+
+      <!-- 메타/링크 -->
+      <div class="mt-4 text-sm flex flex-wrap gap-2">
+        <span class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20"><i class="fa-solid fa-user-gear mr-1"></i> 팀장(기획·설계·통합)</span>
+                <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40" href="https://github.com/tpdus751/naedonnaepick_frontend" target="_blank"><i class="fa-brands fa-github mr-1"></i> Frontend(대표)</a>
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40" href="https://github.com/tpdus751/naedonnaepick_backend" target="_blank"><i class="fa-brands fa-github mr-1"></i> Backend</a>
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40" href="https://github.com/tpdus751/naedonnaepick_flask_backend" target="_blank"><i class="fa-brands fa-github mr-1"></i> Flask</a>
+        <!-- ✅ 추가: PPT 정리 링크 -->
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
+          href="https://www.miricanvas.com/v/14rr18b" target="_blank">
+          <i class="fa-solid fa-file-powerpoint mr-1"></i> PPT 정리
+        </a>
+      </div>
+
+      <!-- 문제/해결/결과 - 채용자 관점 핵심만 -->
+      <div class="mt-4 space-y-3 text-sm">
+        <!-- 데이터 수집/정제 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-database mr-1 text-primary"></i>
+            <span>공공데이터만으로는 부족한 학습 샘플</span>
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · 네이버/카카오 등 <b>리뷰 크롤링</b>으로 원천 데이터 확보 →
+            konlpy(OKT)로 형태소화, 15개 취향 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;태그(예: spicy/cleanliness/value_for_money …)별 <b>1~5점 ‘사전’</b> 정의·매칭.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;유사도 ≥ 0.7만 반영, 평균 점수는 <b>SQLAlchemy</b>로 DB 저장. <br>
+            <b>결과</b> · 학습에 필요한 <b>구조화 점수 데이터</b>를 안정적으로 축적(약 4300개의 음식점 취향 점수화).
+          </div>
+        </div>
+
+        <!-- 리뷰 필터링/스코어링 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-filter mr-1 text-primary"></i>
+            <span>리뷰 노이즈(비음식/광고/짧은 글)로 품질 저하</span>
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · <b>OpenAI(GPT-4o)</b>를 사용해 음식점 관련 리뷰만 선별(다른 도메인 포함)<br> 
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ 길이 기준 상위 30개 리뷰를 취합해 15개 항목의 <b>선호도 점수(1.0~5.0)</b>를 JSON으로<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;산출하는 프롬프트 설계. <br>
+            <b>결과</b> · <b>노이즈 감소</b>와 일관된 스코어링으로 학습 데이터 품질 향상.
+          </div>
+        </div>
+
+        <!-- 추천 모델 구축 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-brain mr-1 text-primary"></i>
+            <span>사용자–매장 매칭 기준 정의와 검증</span>
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · 사용자 점수와 매장 점수의 <b>절댓값 차이</b>를 특징으로 구성 →
+            <b>RandomForest</b>로 80/20 검증<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(파라미터 탐색·실험 로그 정리). <br>
+            <b>결과</b> · 분류 정확도 <b>69.5%</b>(macro F1 ≈ 0.68, precision ≈ 0.69, recall ≈ 0.68)로
+            기본 모델<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;유효성 확인, 이후 서비스 추천 로직에 적용.
+          </div>
+        </div>
+
+        <!-- 성능/UX -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-location-dot mr-1 text-primary"></i>
+            <span>거리 계산·검색 지연</span>
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · DB의 위경도로 <b>Haversine</b>을 <b>Service 레이어</b>에서 계산, <b>Pagination/무한스크롤</b> 도입. <br>
+            <b>결과</b> · 외부 API 의존 제거, 검색 응답 체감 속도 개선·쿼리 부하 완화.
+          </div>
+        </div>
+
+        <!-- 팀 협업 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-people-group mr-1 text-primary"></i>
+            <span>팀원별 환경 차이로 통합 난항</span>
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · Git 브랜치 전략 및 <b>AWS RDS</b> 공유로 환경 표준화. <br>
+            <b>결과</b> · 마이그레이션 비용 없이 공용 DB로 <b>개발 일관성</b> 확보.
+          </div>
+        </div>
+
+        <!-- 부가 기능 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-robot mr-1 text-primary"></i>
+            <span>채팅에 AI 접목</span>
+          </div>
+          <div class="text-slate-300">
+            <b>해결</b> · 채팅 내 <code>/음식점명</code> 질의에만 감성 분석을 적용해 월간 긍정 랭킹 시각화. <br>
+            <b>결과</b> · 추천 신뢰 보완 및 사용자 참여 증대.
+          </div>
+        </div>
+      </div>
+
+      <!-- 기술 태그 -->
+      <div class="mt-4 flex flex-wrap gap-2 text-xs">
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Spring Boot</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">JPA</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">MySQL</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">React Native</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Flask</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Machine Learning</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">AWS RDS</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">REST API</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">OpenAI API</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">konlpy(OKT)</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: 미디어 갤러리 -->
+    <div class="md:col-span-5 mt-4 md:mt-0">
+      <div class="grid grid-cols-2 gap-4">
+        <!-- 1. 비디오 타일 -->
+        <div class="col-span-2">
+          <div class="rounded-xl border border-white/10 overflow-hidden aspect-[424/956]">
+            <video
+              src="assets/projects/naedonnaepick/recommend.mp4"
+              class="w-full h-full object-contain bg-black"
+              controls
+              autoplay
+              muted
+              playsinline
+              preload="metadata"
+              poster="assets/projects/naedonnaepick/demo1-poster.jpg">
+            </video>
+          </div>
+        </div>
+
+        </div>
+      <p class="text-xs text-slate-400 mt-2">사용자 맞춤 음식점 추천 (대표 영상)</p>
+      
+    </div>
+  </div>
+</article>
+
 <!-- ========== 대용량 트래픽 대응 MSA 티켓팅 ========== -->
 <article class="projectCard glass rounded-2xl border border-white/10 shadow-soft p-6 md:col-span-2" data-tags="backend">
   <div class="md:grid md:grid-cols-12 gap-6 items-start">
@@ -606,10 +754,10 @@
         <div class="col-span-2">
           <div class="rounded-xl border border-white/10 overflow-hidden aspect-video">
             <video
+              poster="assets/projects/ticketing/thumbnail.jpg"
               src="assets/projects/ticketing/1000vu_demo.mp4"
-              class="w-full h-full object-full"
+              class="w-full h-full object-cover"
               controls
-              autoplay
               muted
               playsinline
               preload="metadata">
@@ -765,127 +913,234 @@
   </div>
 </article>
 
-      <!-- ========== 내돈내픽 — ML 추천 맛집 앱 (팀장) ========== -->
-<article class="projectCard glass rounded-2xl border border-white/10 shadow-soft p-6 md:col-span-2" data-tags="backend ai mobile">
+<!-- ========== Java 멀티스레드 채팅 프로그램 ========== -->
+<article class="projectCard glass rounded-2xl border border-white/10 shadow-soft p-6 md:col-span-2" data-tags="backend">
   <div class="md:grid md:grid-cols-12 gap-6 items-start">
-    <!-- LEFT -->
     <div class="md:col-span-7">
       <div class="flex items-start justify-between gap-3">
-        <h3 class="text-lg font-semibold text-primary"><b>내돈내픽 - ML 기반 가격·위치·취향(15) 맞춤 음식점 추천 앱</b></h3>
-        <span class="text-xs text-slate-400 whitespace-nowrap">팀장 · 2025.04 ~ 2025.07</span>
+        <h3 class="text-lg font-semibold text-primary"><b>Java, Multi Thread, Socket 기반 채팅 프로그램</b></h3>
+        <span class="text-xs text-slate-400 whitespace-nowrap">개인 · 2024.10</span>
       </div>
-      <p class="mt-2 text-sm text-slate-300">
-        <b>음식점 리뷰 크롤링 → 음식점 점수화 -> 사용자 음식점 리뷰 분석 → 사용자 점수화 → 모델 학습용 데이터 구성 → 모델 학습 → 파라미터 조정 → 추천</b>까지 전 과정을 직접 설계·구현한 E2E 파이프라인.<br>
-        추천 기능 외, 거리 기반 근처 음식점 확인, 음식점 검색, 예산 기능, 채팅 기능을 도입한 종합 서비스 제공.<br>
-        채팅 기능에 <b>감성분석 모델</b>을 적용하여, 사용자 채팅에 대한 긍정 음식점 순위 확인.<br>
+      <p class="mt-2 text-sm text-slate-300"><b>Java</b> 기반의 <b>소켓 통신</b>과 <b>멀티스레드</b> 구조를 활용하여 구현한 <b>실시간 채팅 프로그램</b>으로, <br><u>닉네임 변경</u>, <u>멘션</u>, <u>이미지
+         전송</u>, <u>사용자 목록 확인</u>, <u>대화 로그 저장</u> 등 다양한 채팅 기능을 명령어로 제공. 저수준 네트워크 통신과 예외 
+         처리, 사용자 인터페이스 설계 등을 직접 구현.</p>
 
-      </p>
-
-      <!-- 메타/링크 -->
+      <!-- [Java 소켓 채팅] 레포지토리 아이콘 + DOCX 다운로드 추가 -->
       <div class="mt-4 text-sm flex flex-wrap gap-2">
-        <span class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20"><i class="fa-solid fa-user-gear mr-1"></i> 팀장(기획·설계·통합)</span>
-        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40" href="https://github.com/tpdus751/naedonnaepick_backend" target="_blank"><i class="fa-brands fa-github mr-1"></i> Backend</a>
-        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40" href="https://github.com/tpdus751/naedonnaepick_frontend" target="_blank"><i class="fa-brands fa-github mr-1"></i> Frontend</a>
-        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40" href="https://github.com/tpdus751/naedonnaepick_flask_backend" target="_blank"><i class="fa-brands fa-github mr-1"></i> Flask</a>
-        <!-- ✅ 추가: PPT 정리 링크 -->
         <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
-          href="https://www.miricanvas.com/v/14rr18b" target="_blank">
-          <i class="fa-solid fa-file-powerpoint mr-1"></i> PPT 정리
+          href="https://github.com/tpdus751/ChatProgram_JAVA" target="_blank">
+          <i class="fa-brands fa-github mr-1"></i> Project
+        </a>
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
+          href="/assets/projects/java_chat/report.docx" download>
+          <i class="fa-regular fa-file-word mr-1"></i> 보고서(DOCX)
         </a>
       </div>
 
-      <!-- 문제/해결/결과 - 채용자 관점 핵심만 -->
       <div class="mt-4 space-y-3 text-sm">
-        <!-- 데이터 수집/정제 -->
+
+        <!-- 다중 접속/중계 안정화 -->
         <div class="rounded-xl border border-white/10 bg-white/5 p-3">
           <div class="font-semibold mb-1">
-            <i class="fa-solid fa-database mr-1 text-primary"></i>
-            <span>공공데이터만으로는 부족한 학습 샘플</span>
+            <i class="fa-solid fa-users mr-1 text-primary"></i> 다수 사용자를 지원하는 안정적인 채팅 서버 구현 목표
           </div>
           <div class="text-slate-300">
-            <b>해결</b> · 네이버/카카오 등 <b>리뷰 크롤링</b>으로 원천 데이터 확보 →
-            konlpy(OKT)로 형태소화, 15개 취향 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;태그(예: spicy/cleanliness/value_for_money …)별 <b>1~5점 ‘사전’</b> 정의·매칭.<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;유사도 ≥ 0.7만 반영, 평균 점수는 <b>SQLAlchemy</b>로 DB 저장. <br>
-            <b>결과</b> · 학습에 필요한 <b>구조화 점수 데이터</b>를 안정적으로 축적(약 4300개의 음식점 취향 점수화).
+            <b>해결</b> · 서버 <b>accept 루프</b> + 접속 당 <b>전용 스레드, 소켓</b> 생성, 공용 맵(<b>Hashtable</b>)으로<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 사용자 닉네임을 key로 세션 관리. <br>
+            <b>결과</b> · 단일 서버에서 <b>여러 사용자 실시간 채팅</b> 안정 지원.
           </div>
         </div>
 
-        <!-- 리뷰 필터링/스코어링 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1"><i class="fa-solid fa-code-branch mr-1 text-primary"></i> 명령어 처리 로직의 복잡성 및 코드 가독성 저하</div>
+          <div class="text-slate-300"><b>해결</b> · message.startWith("/명령어") 기반 라우팅 + <b>기능별 메서드</b> 분리.<br>  
+            <b>결과</b> · 가독성·유지보수성 향상, 명령 추가 시 영향 범위 축소.</div>
+        </div>
+
+        <!-- 귓속말 프로토콜 -->
         <div class="rounded-xl border border-white/10 bg-white/5 p-3">
           <div class="font-semibold mb-1">
-            <i class="fa-solid fa-filter mr-1 text-primary"></i>
-            <span>리뷰 노이즈(비음식/광고/짧은 글)로 품질 저하</span>
+            <i class="fa-solid fa-paper-plane mr-1 text-primary"></i> 특정 사용자에게만 메시지 전송(멘션)
           </div>
           <div class="text-slate-300">
-            <b>해결</b> · <b>OpenAI(GPT-4o)</b>를 사용해 음식점 관련 리뷰만 선별(다른 도메인 포함)<br> 
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ 길이 기준 상위 30개 리뷰를 취합해 15개 항목의 <b>선호도 점수(1.0~5.0)</b>를 JSON으로<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;산출하는 프롬프트 설계. <br>
-            <b>결과</b> · <b>노이즈 감소</b>와 일관된 스코어링으로 학습 데이터 품질 향상.
+            <b>해결</b> · <code>/to 대상닉네임 메시지</code> 파싱(<code>StringTokenizer</code>) 후 대상 세션에만 전송. <br>
+            <b>결과</b> · <b>1:1 비공개 메시지</b> 제공, 방해 최소화.
           </div>
         </div>
 
-        <!-- 추천 모델 구축 -->
+        <!-- 이미지 전송/다운로드 프로토콜 -->
         <div class="rounded-xl border border-white/10 bg-white/5 p-3">
           <div class="font-semibold mb-1">
-            <i class="fa-solid fa-brain mr-1 text-primary"></i>
-            <span>사용자–매장 매칭 기준 정의와 검증</span>
+            <i class="fa-solid fa-image mr-1 text-primary"></i> 파일 송수신 프로토콜 부재
           </div>
           <div class="text-slate-300">
-            <b>해결</b> · 사용자 점수와 매장 점수의 <b>절댓값 차이</b>를 특징으로 구성 →
-            <b>RandomForest</b>로 80/20 검증<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(파라미터 탐색·실험 로그 정리). <br>
-            <b>결과</b> · 분류 정확도 <b>69.5%</b>(macro F1 ≈ 0.68, precision ≈ 0.69, recall ≈ 0.68)로
-            기본 모델<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;유효성 확인, 이후 서비스 추천 로직에 적용.
+            <b>해결</b> · 보낼 사용자는 /img 파일명으로 BufferedInputStream으로 이미지를 읽어들인 후 소켓에 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;발신 → 서버는 DataInputStream으로 읽어들인 후 <code>/notify</code>로 배포 안내 → <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;타 사용자가 <code>/download 파일명</code>으로 요청 시 서버가 바이너리 스트림 전송.  <br>
+            <b>결과</b> · <b>이미지 공유/다운로드</b>가 안정적으로 동작.
           </div>
         </div>
 
-        <!-- 성능/UX -->
+        <!-- 로그 저장 -->
         <div class="rounded-xl border border-white/10 bg-white/5 p-3">
           <div class="font-semibold mb-1">
-            <i class="fa-solid fa-location-dot mr-1 text-primary"></i>
-            <span>거리 계산·검색 지연</span>
+            <i class="fa-solid fa-file-lines mr-1 text-primary"></i> 서버 종료 시, 사용자 쓰레드가 종료되지 않음
           </div>
           <div class="text-slate-300">
-            <b>해결</b> · DB의 위경도로 <b>Haversine</b>을 <b>Service 레이어</b>에서 계산, <b>Pagination/무한스크롤</b> 도입. <br>
-            <b>결과</b> · 외부 API 의존 제거, 검색 응답 체감 속도 개선·쿼리 부하 완화.
+            <b>해결</b> · connectClient()에서 데몬 스레드 처리 → <b>thread.setDaemon(true)</b><br>
+            <b>결과</b> · 서버가 종료될 때 쓰레드도 같이 종료.
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="mt-4 flex flex-wrap gap-2 text-xs">
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Java</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Socket</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Thread</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: 미디어 갤러리 -->
+    <div class="md:col-span-5 mt-4 md:mt-0">
+      <div class="grid grid-cols-2 gap-4">
+        <!-- 1. Java Chat 옵션 이미지 -->
+        <a href="assets/projects/java_chat/option.png" 
+          target="_blank" 
+          class="col-span-2" 
+          aria-label="Java Chat 옵션 화면">
+          <img src="assets/projects/java_chat/option.png"
+              class="w-full rounded-xl border border-white/10 object-cover aspect-video" 
+              alt="Java Chat 옵션 화면">
+        </a>
+
+        <!-- 2. Java Chat 이미지 2 -->
+        <a href="assets/projects/java_chat/img2.png" 
+          target="_blank" 
+          class="col-span-2" 
+          aria-label="Java Chat 화면 2">
+          <img src="assets/projects/java_chat/img2.png"
+              class="w-full rounded-xl border border-white/10 object-cover aspect-video" 
+              alt="Java Chat 화면 2">
+        </a>
+
+        <!-- 3. Java Chat 이미지 3 -->
+        <a href="assets/projects/java_chat/img3.png" 
+          target="_blank" 
+          class="col-span-2" 
+          aria-label="Java Chat 화면 3">
+          <img src="assets/projects/java_chat/img3.png"
+              class="w-full rounded-xl border border-white/10 object-cover aspect-video" 
+              alt="Java Chat 화면 3">
+        </a>
+
+
+        </div>
+        <p class="text-xs text-slate-400 mt-2">명령어 확인 / 4명의 채팅 환경 / 채팅 화면</p>
+        </p>
+  </div>
+</article>
+
+<!-- ========== QuizBank — IT 문제 공유/모의시험 웹 ========== -->
+<article class="projectCard glass rounded-2xl border border-white/10 shadow-soft p-6 md:col-span-2" data-tags="backend">
+  <div class="md:grid md:grid-cols-12 gap-6 items-start">
+    <div class="md:col-span-7">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-lg font-semibold text-primary"><b>QuizBank — IT 문제 등록·공유·모의시험 응시 웹 사이트</b></h3>
+        <span class="text-xs text-slate-400 whitespace-nowrap">개인 · 2024.11 ~ 2024.12</span>
+      </div>
+
+      <p class="mt-2 text-sm text-slate-300">
+        시험 기간 중 <b>학습과 프로젝트 구현을 병행</b>하기 위해 설계된 문제은행 서비스. 사용자는 <b>객관식·주관식</b> 문제를
+        <b>등록·공유</b>하고, 과목별/전체 <b>랜덤 모의시험</b>에 응시할 수 있습니다. 카카오 로그인, 어려운 문제 확인, 시험 결과,
+        사용자 참여 이벤트, 크레딧 제공 기능 포함.
+      </p>
+
+      <!-- [QuizBank] 레포지토리 아이콘 + DOCX 다운로드 추가 -->
+<div class="mt-4 text-sm flex flex-wrap gap-2">
+  <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
+     href="https://github.com/tpdus751/QuizBank_WEB" target="_blank">
+     <i class="fa-brands fa-github mr-1"></i> Project
+  </a>
+  <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
+     href="/assets/projects/quizbank/report.docx" download>
+     <i class="fa-regular fa-file-word mr-1"></i> 보고서(DOCX)
+  </a>
+</div>
+
+      <!-- 문제·해결·결과 -->
+      <div class="mt-4 space-y-3 text-sm">
+
+        <!-- 객관식 랜덤화 -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1"><i class="fa-solid fa-shuffle mr-1 text-primary"></i> 객관식 정답 암기 이슈</div>
+          <div class="text-slate-300">
+            <b>해결</b> · Service 레이어에서 <b>보기 순서 랜덤화</b> 처리. <br>
+            <b>결과</b> · 예측 가능성 ↓, 공정성 ↑.
           </div>
         </div>
 
-        <!-- 팀 협업 -->
+        <!-- 댓글 UX -->
         <div class="rounded-xl border border-white/10 bg-white/5 p-3">
-          <div class="font-semibold mb-1">
-            <i class="fa-solid fa-people-group mr-1 text-primary"></i>
-            <span>팀원별 환경 차이로 통합 난항</span>
-          </div>
+          <div class="font-semibold mb-1"><i class="fa-solid fa-shuffle mr-1 text-primary"></i> 댓글 CRUD 시 전체 새로고침 → 사용자 경험 저하</div>
           <div class="text-slate-300">
-            <b>해결</b> · Git 브랜치 전략 및 <b>AWS RDS</b> 공유로 환경 표준화. <br>
-            <b>결과</b> · 마이그레이션 비용 없이 공용 DB로 <b>개발 일관성</b> 확보.
+            <b>해결</b> · <b>AJAX</b> 기반 비동기 요청으로 댓글 영역만 갱신. <br>
+            <b>결과</b> · 불필요 렌더링 축소, UX 개선.
           </div>
         </div>
 
-        <!-- 부가 기능 -->
+        <!-- 관리자 페이지 접근 제어 -->
         <div class="rounded-xl border border-white/10 bg-white/5 p-3">
-          <div class="font-semibold mb-1">
-            <i class="fa-solid fa-robot mr-1 text-primary"></i>
-            <span>채팅에 AI 접목</span>
+          <div class="font-semibold mb-1"><i class="fa-solid fa-shuffle mr-1 text-primary"></i>
+            관리자 페이지 URL 조작 접근
           </div>
           <div class="text-slate-300">
-            <b>해결</b> · 채팅 내 <code>/음식점명</code> 질의에만 감성 분석을 적용해 월간 긍정 랭킹 시각화. <br>
-            <b>결과</b> · 추천 신뢰 보완 및 사용자 참여 증대.
+            <b>해결</b> · 세션의 <code>loginMemberVO</code>에서 권한을 확인하여 <code>getType() == "S"</code> (관리자)만 통과.
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;미인증/권한 부족은 <b>로그인/403</b>으로 리다이렉트. <br>
+            <b>결과</b> · 모든 관리자 화면에 대해 <b>일반 사용자/비로그인 접근 차단</b>, 단순 URL 조작 방어.
           </div>
         </div>
+
+        <!-- 계층형 댓글(원답글/다답글) -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1">
+            <i class="fa-solid fa-sitemap mr-1 text-primary"></i>
+            원글의 답글, 답글의 답글을 구현하는 것을 구현해야 함
+          </div>
+          <div class="text-slate-300 text-sm">
+            <div>
+              <b>해결</b>
+              <ul class="list-disc pl-5 space-y-1">
+                <li><b>스키마 추가</b> : 
+                  <u><code>originNo</code>(그룹키)</u>, <u><code>groupOrd</code>(그룹 내 순서)</u>, <u><code>groupLayer</code>(깊이)</u>
+                </li>
+                <li><b>원글</b>: <code>originNo=code</code>, <code>groupOrd=0</code>, <code>groupLayer=0</code></li>
+                <li><b>답글 삽입 규칙</b>:
+                  <code>originNo=부모.originNo</code>,
+                  <code>groupOrd=부모.groupOrd+1</code>,
+                  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>groupLayer=부모+1</code>
+                  삽입 전 “밀어내기”<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ <code><b>"UPDATE...SET groupOrd = groupOrd + 1</b><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>WHERE originNo = ? AND groupOrd &gt;= ?"</b></code>
+                </li>
+                <li><b>목록 정렬</b>:
+                  <code>ORDER BY originNo DESC, groupOrd ASC</code>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <b>결과</b> · 대댓글이 많아도
+              <b>계층 순서/들여쓰기</b>가 안정적으로 유지되고, 조회/렌더링 규칙이 단순화됨.
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <!-- 기술 태그 -->
       <div class="mt-4 flex flex-wrap gap-2 text-xs">
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Spring Boot</span>
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">JPA</span>
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">MySQL</span>
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">React Native</span>
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Flask</span>
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Machine Learning</span>
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">AWS RDS</span>
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">REST API</span>
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">OpenAI API</span>
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">konlpy(OKT)</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">JSP/JSTL/Servlet</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">MyBatis</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">OracleDB</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">jQuery</span>
       </div>
     </div>
 
@@ -894,24 +1149,110 @@
       <div class="grid grid-cols-2 gap-4">
         <!-- 1. 비디오 타일 -->
         <div class="col-span-2">
-          <div class="rounded-xl border border-white/10 overflow-hidden aspect-[424/956]">
+          <div class="rounded-xl border border-white/10 overflow-hidden aspect-[1920/1200]">
             <video
-              src="assets/projects/naedonnaepick/recommend.mp4"
+              src="assets/projects/quizbank/quizbank_show_full.mp4"
               class="w-full h-full object-contain bg-black"
               controls
               autoplay
               muted
               playsinline
               preload="metadata"
-              poster="assets/projects/naedonnaepick/demo1-poster.jpg">
+              poster="assets/projects/blockchain/demo1-poster.jpg">
+            </video>
+          </div>
+        </div>
+        <!-- 1. QuizBank 아키텍처 이미지 -->
+        <a href="assets/projects/quizbank/architecture.png" 
+          target="_blank" 
+          class="col-span-2" 
+          aria-label="QuizBank 아키텍처">
+          <img src="assets/projects/quizbank/architecture.png"
+              class="w-full rounded-xl border border-white/10 object-full aspect-video" 
+              alt="QuizBank 아키텍처">
+        </a>
+
+        <!-- 2. QuizBank ERD 이미지 -->
+        <a href="assets/projects/quizbank/erd.png" 
+          target="_blank" 
+          class="col-span-2" 
+          aria-label="QuizBank ERD">
+          <img src="assets/projects/quizbank/erd.png"
+              class="w-full rounded-xl border border-white/10 object-full aspect-video" 
+              alt="QuizBank ERD">
+        </a>
+
+        </div>
+      <p class="text-xs text-slate-400 mt-2">QuizBank 시연 영상 / 아키텍처 / ERD</p>
+      </p>
+  </div>
+</article>
+
+<!-- ========== 블록체인 실습 — SHA-256 · 서명 · PoW ========== -->
+<article class="projectCard glass rounded-2xl border border-white/10 shadow-soft p-6 md:col-span-2" data-tags="backend">
+  <div class="md:grid md:grid-cols-12 gap-6 items-start">
+    <div class="md:col-span-7">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-lg font-semibold text-primary"><b>블록체인 실습 — Java를 활용한 블록, 트랜잭션, 해시, 전자서명, PoW</b></h3>
+        <span class="text-xs text-slate-400 whitespace-nowrap">개인 · 2025.01</span>
+      </div>
+      <p class="mt-2 text-sm text-slate-300"><b>Java</b>를 활용하여 블록, 트랜잭션, 해시, 작업증명(PoW) 등의 <b>블록체인 구조</b>를 직접 구현한 시뮬레이션<br> 프로젝트로, 
+          암호화폐의 핵심 기술인 <b>블록체인의 원리</b>를 실습을 통해 체득하기 위한 목적</p>
+
+      <div class="mt-4 text-sm flex flex-wrap gap-2">
+        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
+          href="https://github.com/tpdus751/blockchain-java-simulation" target="_blank">
+          <i class="fa-brands fa-github mr-1"></i> Project
+        </a>
+      </div>
+
+      <div class="mt-4 space-y-3 text-sm">
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1"><i class="fa-solid fa-link mr-1 text-primary"></i> 체인 연결·해시 설계</div>
+          <div class="text-slate-300"><b>해결</b> · <b>previousBlockHash</b> 참조, 트랜잭션을 포함해 해시 생성.<br>  
+            <b>결과</b> · 변경 감지·무결성 확보.</div>
+        </div>
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1"><i class="fa-solid fa-lock mr-1 text-primary"></i> SHA-256 구현 난점</div>
+          <div class="text-slate-300"><b>해결</b> · <b>MessageDigest</b> API 활용.  <br>
+            <b>결과</b> · 안정적 해시 생성.</div>
+        </div>
+        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+          <div class="font-semibold mb-1"><i class="fa-solid fa-hammer mr-1 text-primary"></i> PoW 채굴 조건 만족 로직 필요</div>
+          <div class="text-slate-300"><b>해결</b> · mine() 함수 구현하여 <b>nonce</b> 증가 반복으로 목표 해시(예: 0000*) 찾기.<br>  
+            <b>결과</b> · 채굴 성공 시점 감지, 난이도 기반 채굴 시뮬레이션 확장 가능.</div>
+        </div>
+      </div>
+
+      <div class="mt-4 flex flex-wrap gap-2 text-xs">
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Java</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">SHA-256</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Java Security API</span>
+        <span class="tag bg-white/10 border border-white/20 px-2 py-1">PoW</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: 미디어 갤러리 -->
+    <div class="md:col-span-5 mt-4 md:mt-0">
+      <div class="grid grid-cols-2 gap-4">
+        <!-- 1. 비디오 타일 -->
+        <div class="col-span-2">
+          <div class="rounded-xl border border-white/10 overflow-hidden aspect-[1552/996]">
+            <video
+              src="assets/projects/blockchain/blockchain_show.mp4"
+              class="w-full h-full object-contain bg-black"
+              controls
+              autoplay
+              muted
+              playsinline
+              preload="metadata"
+              poster="assets/projects/blockchain/demo1-poster.jpg">
             </video>
           </div>
         </div>
 
         </div>
-      <p class="text-xs text-slate-400 mt-2">사용자 맞춤 음식점 추천 (대표 영상)</p>
-      
-    </div>
+      <p class="text-xs text-slate-400 mt-2">체인 생성 / 변조 시연</p>
   </div>
 </article>
 
@@ -1165,351 +1506,6 @@
   </div>
 </article>
 -->
-
-<!-- ========== 블록체인 실습 — SHA-256 · 서명 · PoW ========== -->
-<article class="projectCard glass rounded-2xl border border-white/10 shadow-soft p-6 md:col-span-2" data-tags="backend">
-  <div class="md:grid md:grid-cols-12 gap-6 items-start">
-    <div class="md:col-span-7">
-      <div class="flex items-start justify-between gap-3">
-        <h3 class="text-lg font-semibold text-primary"><b>블록체인 실습 — Java를 활용한 블록, 트랜잭션, 해시, 전자서명, PoW</b></h3>
-        <span class="text-xs text-slate-400 whitespace-nowrap">개인 · 2025.01</span>
-      </div>
-      <p class="mt-2 text-sm text-slate-300"><b>Java</b>를 활용하여 블록, 트랜잭션, 해시, 작업증명(PoW) 등의 <b>블록체인 구조</b>를 직접 구현한 시뮬레이션<br> 프로젝트로, 
-          암호화폐의 핵심 기술인 <b>블록체인의 원리</b>를 실습을 통해 체득하기 위한 목적</p>
-
-      <div class="mt-4 text-sm flex flex-wrap gap-2">
-        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
-          href="https://github.com/tpdus751/blockchain-java-simulation" target="_blank">
-          <i class="fa-brands fa-github mr-1"></i> Project
-        </a>
-      </div>
-
-      <div class="mt-4 space-y-3 text-sm">
-        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
-          <div class="font-semibold mb-1"><i class="fa-solid fa-link mr-1 text-primary"></i> 체인 연결·해시 설계</div>
-          <div class="text-slate-300"><b>해결</b> · <b>previousBlockHash</b> 참조, 트랜잭션을 포함해 해시 생성.<br>  
-            <b>결과</b> · 변경 감지·무결성 확보.</div>
-        </div>
-        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
-          <div class="font-semibold mb-1"><i class="fa-solid fa-lock mr-1 text-primary"></i> SHA-256 구현 난점</div>
-          <div class="text-slate-300"><b>해결</b> · <b>MessageDigest</b> API 활용.  <br>
-            <b>결과</b> · 안정적 해시 생성.</div>
-        </div>
-        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
-          <div class="font-semibold mb-1"><i class="fa-solid fa-hammer mr-1 text-primary"></i> PoW 채굴 조건 만족 로직 필요</div>
-          <div class="text-slate-300"><b>해결</b> · mine() 함수 구현하여 <b>nonce</b> 증가 반복으로 목표 해시(예: 0000*) 찾기.<br>  
-            <b>결과</b> · 채굴 성공 시점 감지, 난이도 기반 채굴 시뮬레이션 확장 가능.</div>
-        </div>
-      </div>
-
-      <div class="mt-4 flex flex-wrap gap-2 text-xs">
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Java</span>
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">SHA-256</span>
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Java Security API</span>
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">PoW</span>
-      </div>
-    </div>
-
-    <!-- RIGHT: 미디어 갤러리 -->
-    <div class="md:col-span-5 mt-4 md:mt-0">
-      <div class="grid grid-cols-2 gap-4">
-        <!-- 1. 비디오 타일 -->
-        <div class="col-span-2">
-          <div class="rounded-xl border border-white/10 overflow-hidden aspect-[1552/996]">
-            <video
-              src="assets/projects/blockchain/blockchain_show.mp4"
-              class="w-full h-full object-contain bg-black"
-              controls
-              autoplay
-              muted
-              playsinline
-              preload="metadata"
-              poster="assets/projects/blockchain/demo1-poster.jpg">
-            </video>
-          </div>
-        </div>
-
-        </div>
-      <p class="text-xs text-slate-400 mt-2">체인 생성 / 변조 시연</p>
-  </div>
-</article>
-
-<!-- ========== QuizBank — IT 문제 공유/모의시험 웹 ========== -->
-<article class="projectCard glass rounded-2xl border border-white/10 shadow-soft p-6 md:col-span-2" data-tags="backend">
-  <div class="md:grid md:grid-cols-12 gap-6 items-start">
-    <div class="md:col-span-7">
-      <div class="flex items-start justify-between gap-3">
-        <h3 class="text-lg font-semibold text-primary"><b>QuizBank — IT 문제 등록·공유·모의시험 응시 웹 사이트</b></h3>
-        <span class="text-xs text-slate-400 whitespace-nowrap">개인 · 2024.11 ~ 2024.12</span>
-      </div>
-
-      <p class="mt-2 text-sm text-slate-300">
-        시험 기간 중 <b>학습과 프로젝트 구현을 병행</b>하기 위해 설계된 문제은행 서비스. 사용자는 <b>객관식·주관식</b> 문제를
-        <b>등록·공유</b>하고, 과목별/전체 <b>랜덤 모의시험</b>에 응시할 수 있습니다. 카카오 로그인, 어려운 문제 확인, 시험 결과,
-        사용자 참여 이벤트, 크레딧 제공 기능 포함.
-      </p>
-
-      <!-- [QuizBank] 레포지토리 아이콘 + DOCX 다운로드 추가 -->
-<div class="mt-4 text-sm flex flex-wrap gap-2">
-  <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
-     href="https://github.com/tpdus751/QuizBank_WEB" target="_blank">
-     <i class="fa-brands fa-github mr-1"></i> Project
-  </a>
-  <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
-     href="/assets/projects/quizbank/report.docx" download>
-     <i class="fa-regular fa-file-word mr-1"></i> 보고서(DOCX)
-  </a>
-</div>
-
-      <!-- 문제·해결·결과 -->
-      <div class="mt-4 space-y-3 text-sm">
-
-        <!-- 객관식 랜덤화 -->
-        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
-          <div class="font-semibold mb-1"><i class="fa-solid fa-shuffle mr-1 text-primary"></i> 객관식 정답 암기 이슈</div>
-          <div class="text-slate-300">
-            <b>해결</b> · Service 레이어에서 <b>보기 순서 랜덤화</b> 처리. <br>
-            <b>결과</b> · 예측 가능성 ↓, 공정성 ↑.
-          </div>
-        </div>
-
-        <!-- 댓글 UX -->
-        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
-          <div class="font-semibold mb-1"><i class="fa-solid fa-shuffle mr-1 text-primary"></i> 댓글 CRUD 시 전체 새로고침 → 사용자 경험 저하</div>
-          <div class="text-slate-300">
-            <b>해결</b> · <b>AJAX</b> 기반 비동기 요청으로 댓글 영역만 갱신. <br>
-            <b>결과</b> · 불필요 렌더링 축소, UX 개선.
-          </div>
-        </div>
-
-        <!-- 관리자 페이지 접근 제어 -->
-        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
-          <div class="font-semibold mb-1"><i class="fa-solid fa-shuffle mr-1 text-primary"></i>
-            관리자 페이지 URL 조작 접근
-          </div>
-          <div class="text-slate-300">
-            <b>해결</b> · 세션의 <code>loginMemberVO</code>에서 권한을 확인하여 <code>getType() == "S"</code> (관리자)만 통과.
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;미인증/권한 부족은 <b>로그인/403</b>으로 리다이렉트. <br>
-            <b>결과</b> · 모든 관리자 화면에 대해 <b>일반 사용자/비로그인 접근 차단</b>, 단순 URL 조작 방어.
-          </div>
-        </div>
-
-        <!-- 계층형 댓글(원답글/다답글) -->
-        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
-          <div class="font-semibold mb-1">
-            <i class="fa-solid fa-sitemap mr-1 text-primary"></i>
-            원글의 답글, 답글의 답글을 구현하는 것을 구현해야 함
-          </div>
-          <div class="text-slate-300 text-sm">
-            <div>
-              <b>해결</b>
-              <ul class="list-disc pl-5 space-y-1">
-                <li><b>스키마 추가</b> : 
-                  <u><code>originNo</code>(그룹키)</u>, <u><code>groupOrd</code>(그룹 내 순서)</u>, <u><code>groupLayer</code>(깊이)</u>
-                </li>
-                <li><b>원글</b>: <code>originNo=code</code>, <code>groupOrd=0</code>, <code>groupLayer=0</code></li>
-                <li><b>답글 삽입 규칙</b>:
-                  <code>originNo=부모.originNo</code>,
-                  <code>groupOrd=부모.groupOrd+1</code>,
-                  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>groupLayer=부모+1</code>
-                  삽입 전 “밀어내기”<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ <code><b>"UPDATE...SET groupOrd = groupOrd + 1</b><br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>WHERE originNo = ? AND groupOrd &gt;= ?"</b></code>
-                </li>
-                <li><b>목록 정렬</b>:
-                  <code>ORDER BY originNo DESC, groupOrd ASC</code>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <b>결과</b> · 대댓글이 많아도
-              <b>계층 순서/들여쓰기</b>가 안정적으로 유지되고, 조회/렌더링 규칙이 단순화됨.
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- 기술 태그 -->
-      <div class="mt-4 flex flex-wrap gap-2 text-xs">
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">JSP/JSTL/Servlet</span>
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">MyBatis</span>
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">OracleDB</span>
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">jQuery</span>
-      </div>
-    </div>
-
-    <!-- RIGHT: 미디어 갤러리 -->
-    <div class="md:col-span-5 mt-4 md:mt-0">
-      <div class="grid grid-cols-2 gap-4">
-        <!-- 1. 비디오 타일 -->
-        <div class="col-span-2">
-          <div class="rounded-xl border border-white/10 overflow-hidden aspect-[1920/1200]">
-            <video
-              src="assets/projects/quizbank/quizbank_show_full.mp4"
-              class="w-full h-full object-contain bg-black"
-              controls
-              autoplay
-              muted
-              playsinline
-              preload="metadata"
-              poster="assets/projects/blockchain/demo1-poster.jpg">
-            </video>
-          </div>
-        </div>
-        <!-- 1. QuizBank 아키텍처 이미지 -->
-        <a href="assets/projects/quizbank/architecture.png" 
-          target="_blank" 
-          class="col-span-2" 
-          aria-label="QuizBank 아키텍처">
-          <img src="assets/projects/quizbank/architecture.png"
-              class="w-full rounded-xl border border-white/10 object-full aspect-video" 
-              alt="QuizBank 아키텍처">
-        </a>
-
-        <!-- 2. QuizBank ERD 이미지 -->
-        <a href="assets/projects/quizbank/erd.png" 
-          target="_blank" 
-          class="col-span-2" 
-          aria-label="QuizBank ERD">
-          <img src="assets/projects/quizbank/erd.png"
-              class="w-full rounded-xl border border-white/10 object-full aspect-video" 
-              alt="QuizBank ERD">
-        </a>
-
-        </div>
-      <p class="text-xs text-slate-400 mt-2">QuizBank 시연 영상 / 아키텍처 / ERD</p>
-      </p>
-  </div>
-</article>
-
-
-<!-- ========== Java 멀티스레드 채팅 프로그램 ========== -->
-<article class="projectCard glass rounded-2xl border border-white/10 shadow-soft p-6 md:col-span-2" data-tags="backend">
-  <div class="md:grid md:grid-cols-12 gap-6 items-start">
-    <div class="md:col-span-7">
-      <div class="flex items-start justify-between gap-3">
-        <h3 class="text-lg font-semibold text-primary"><b>Java, Multi Thread, Socket 기반 채팅 프로그램</b></h3>
-        <span class="text-xs text-slate-400 whitespace-nowrap">개인 · 2024.10</span>
-      </div>
-      <p class="mt-2 text-sm text-slate-300"><b>Java</b> 기반의 <b>소켓 통신</b>과 <b>멀티스레드</b> 구조를 활용하여 구현한 <b>실시간 채팅 프로그램</b>으로, <br><u>닉네임 변경</u>, <u>멘션</u>, <u>이미지
-         전송</u>, <u>사용자 목록 확인</u>, <u>대화 로그 저장</u> 등 다양한 채팅 기능을 명령어로 제공. 저수준 네트워크 통신과 예외 
-         처리, 사용자 인터페이스 설계 등을 직접 구현.</p>
-
-      <!-- [Java 소켓 채팅] 레포지토리 아이콘 + DOCX 다운로드 추가 -->
-      <div class="mt-4 text-sm flex flex-wrap gap-2">
-        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
-          href="https://github.com/tpdus751/ChatProgram_JAVA" target="_blank">
-          <i class="fa-brands fa-github mr-1"></i> Project
-        </a>
-        <a class="tag rounded-full bg-white/10 px-2 py-1 border border-white/20 underline decoration-primary/40"
-          href="/assets/projects/java_chat/report.docx" download>
-          <i class="fa-regular fa-file-word mr-1"></i> 보고서(DOCX)
-        </a>
-      </div>
-
-      <div class="mt-4 space-y-3 text-sm">
-
-        <!-- 다중 접속/중계 안정화 -->
-        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
-          <div class="font-semibold mb-1">
-            <i class="fa-solid fa-users mr-1 text-primary"></i> 다수 사용자를 지원하는 안정적인 채팅 서버 구현 목표
-          </div>
-          <div class="text-slate-300">
-            <b>해결</b> · 서버 <b>accept 루프</b> + 접속 당 <b>전용 스레드, 소켓</b> 생성, 공용 맵(<b>Hashtable</b>)으로<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 사용자 닉네임을 key로 세션 관리. <br>
-            <b>결과</b> · 단일 서버에서 <b>여러 사용자 실시간 채팅</b> 안정 지원.
-          </div>
-        </div>
-
-        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
-          <div class="font-semibold mb-1"><i class="fa-solid fa-code-branch mr-1 text-primary"></i> 명령어 처리 로직의 복잡성 및 코드 가독성 저하</div>
-          <div class="text-slate-300"><b>해결</b> · message.startWith("/명령어") 기반 라우팅 + <b>기능별 메서드</b> 분리.<br>  
-            <b>결과</b> · 가독성·유지보수성 향상, 명령 추가 시 영향 범위 축소.</div>
-        </div>
-
-        <!-- 귓속말 프로토콜 -->
-        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
-          <div class="font-semibold mb-1">
-            <i class="fa-solid fa-paper-plane mr-1 text-primary"></i> 특정 사용자에게만 메시지 전송(멘션)
-          </div>
-          <div class="text-slate-300">
-            <b>해결</b> · <code>/to 대상닉네임 메시지</code> 파싱(<code>StringTokenizer</code>) 후 대상 세션에만 전송. <br>
-            <b>결과</b> · <b>1:1 비공개 메시지</b> 제공, 방해 최소화.
-          </div>
-        </div>
-
-        <!-- 이미지 전송/다운로드 프로토콜 -->
-        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
-          <div class="font-semibold mb-1">
-            <i class="fa-solid fa-image mr-1 text-primary"></i> 파일 송수신 프로토콜 부재
-          </div>
-          <div class="text-slate-300">
-            <b>해결</b> · 보낼 사용자는 /img 파일명으로 BufferedInputStream으로 이미지를 읽어들인 후 소켓에 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;발신 → 서버는 DataInputStream으로 읽어들인 후 <code>/notify</code>로 배포 안내 → <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;타 사용자가 <code>/download 파일명</code>으로 요청 시 서버가 바이너리 스트림 전송.  <br>
-            <b>결과</b> · <b>이미지 공유/다운로드</b>가 안정적으로 동작.
-          </div>
-        </div>
-
-        <!-- 로그 저장 -->
-        <div class="rounded-xl border border-white/10 bg-white/5 p-3">
-          <div class="font-semibold mb-1">
-            <i class="fa-solid fa-file-lines mr-1 text-primary"></i> 서버 종료 시, 사용자 쓰레드가 종료되지 않음
-          </div>
-          <div class="text-slate-300">
-            <b>해결</b> · connectClient()에서 데몬 스레드 처리 → <b>thread.setDaemon(true)</b><br>
-            <b>결과</b> · 서버가 종료될 때 쓰레드도 같이 종료.
-          </div>
-        </div>
-      </div>
-
-      
-
-      <div class="mt-4 flex flex-wrap gap-2 text-xs">
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Java</span>
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Socket</span>
-        <span class="tag bg-white/10 border border-white/20 px-2 py-1">Thread</span>
-      </div>
-    </div>
-
-    <!-- RIGHT: 미디어 갤러리 -->
-    <div class="md:col-span-5 mt-4 md:mt-0">
-      <div class="grid grid-cols-2 gap-4">
-        <!-- 1. Java Chat 옵션 이미지 -->
-        <a href="assets/projects/java_chat/option.png" 
-          target="_blank" 
-          class="col-span-2" 
-          aria-label="Java Chat 옵션 화면">
-          <img src="assets/projects/java_chat/option.png"
-              class="w-full rounded-xl border border-white/10 object-cover aspect-video" 
-              alt="Java Chat 옵션 화면">
-        </a>
-
-        <!-- 2. Java Chat 이미지 2 -->
-        <a href="assets/projects/java_chat/img2.png" 
-          target="_blank" 
-          class="col-span-2" 
-          aria-label="Java Chat 화면 2">
-          <img src="assets/projects/java_chat/img2.png"
-              class="w-full rounded-xl border border-white/10 object-cover aspect-video" 
-              alt="Java Chat 화면 2">
-        </a>
-
-        <!-- 3. Java Chat 이미지 3 -->
-        <a href="assets/projects/java_chat/img3.png" 
-          target="_blank" 
-          class="col-span-2" 
-          aria-label="Java Chat 화면 3">
-          <img src="assets/projects/java_chat/img3.png"
-              class="w-full rounded-xl border border-white/10 object-cover aspect-video" 
-              alt="Java Chat 화면 3">
-        </a>
-
-
-        </div>
-        <p class="text-xs text-slate-400 mt-2">명령어 확인 / 4명의 채팅 환경 / 채팅 화면</p>
-        </p>
-  </div>
-</article>
-
 
     <!-- ====== CONTACT ====== -->
 
